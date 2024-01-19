@@ -55,7 +55,7 @@ export default Header
             <li><Link to="/contacto" id="sliderRojo" className="toggle-logo">CONTACTO</Link></li>
             <li><Link to="/about">ABOUT</Link></li>
             <li><Link to="/gallery">GALERIA</Link></li>
-            <li><Link to="/acceso">ACCESO</Link></li>
+            <li><Link to="/access">ACCESO</Link></li>
           </ul>
         </nav>
       </header>
