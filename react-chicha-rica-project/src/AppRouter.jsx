@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Contacto from './pages/Contacto';
+import Contacto from './pages/Contact';
 import About from './pages/About';
 import Gallery from './pages/Gallery';
-import Acceso from './pages/Acceso';
+import Acceso from './pages/Access';
 
 const AppRouter = () => {
   return (
