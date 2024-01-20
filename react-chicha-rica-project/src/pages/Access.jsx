@@ -1,94 +1,144 @@
 import React, { useState } from 'react';
-import '../styles/Access.css';
+import '../styles/Access.css'
+import Modal from 'react-modal'; //biblioteca para modal
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; //biblioteca icono cerrar modal
+import { faTimes } from '@fortawesome/free-solid-svg-icons'; //biblioteca icono cerrar modal
+
+//?Estilos para el modal
+const customStyles = {
+  content: {
+    backgroundColor: '#fefefe',
+    margin: 'auto', //centrar horizontalmente
+    top: '50%',
+    transform: 'translateY(-50%)', //centrar verticalmente
+    padding: '70px',
+    border: 'none',
+    borderRadius: '5px',
+    width: '26%',
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'center', 
+   },
+  overlay:{ //sombra del modal
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  }
+};
+
+
 
 const Access = () => {
-  const [formData, setFormData] = useState({
-    nombre: '',
-    email: '',
-    password: '',
-  });
+  // Estados para los campos del formulario y mensajes de error
+  const [nombre, setNombre] = useState('');
+  const [email, setEmail] = useState('');
+  const [contrasena, setContrasena] = useState('');
+  const [errores, setErrores] = useState({}); //objeto vacío para errores
+  const [modalAbierto, setModalAbierto] = useState(false);
 
-  const [nombreError, setNombreError] = useState('');
+  // Expresión regular para validar el formato del nombre
+  const nombreRegex = /^[A-Z][a-z]+$/;
 
-  const validarFormulario = () => {
-    const { nombre, email, password } = formData;
-
-    // Validación de nombre
-    const nombreRegExp = /^[A-Z][a-z]+ [A-Z][a-z]+$/;
-    if (!nombreRegExp.test(nombre)) {
-      setNombreError('Por favor, ingresa un nombre válido.');
-      return;
-    }
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  
-
-    // Limpiar el error si el nombre es válido
-    setNombreError('');
-  };
-
+  // Función para manejar el envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Puedes realizar acciones adicionales aquí antes de enviar los datos
-    console.log(formData);
+
+  //VALIDACIONES---------------------------
+    // Validación de nombre
+    const erroresValidacion = {};
+    if (!nombre.trim()) { //si el campo está vacío...
+      erroresValidacion.nombre = 'El nombre es obligatorio'; //salta el error
+    } else if (!nombreRegex.test(nombre)) {
+      erroresValidacion.nombre = //si no coincide con las regex salta nuevo error
+        'El nombre debe incluir la primera letra en mayúscula';
+    }
+
+    // Validación email 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      erroresValidacion.email = 'Ingresa un email válido';
+    }
+
+    // Validación de contraseña
+    if (contrasena.length < 6) {
+      erroresValidacion.contrasena = 'La contraseña debe tener al menos 6 caracteres';
+    }
+
+    // Si hay errores, se actualiza el estado 'errores' y salta el mensaje correspondiente
+    if (Object.keys(erroresValidacion).length > 0) {
+      setErrores(erroresValidacion);
+    }
+      
+      
+    
+  //MODAL---------------------------
+    // Abrir el modal
+      setModalAbierto(true);
+    
+  };
+
+    // Función para cerrar el modal
+  const closeModal = () => {
+    setModalAbierto(false);
   };
 
   return (
     <section className="formulario">
       <h4>Crear Cuenta</h4>
       <form className="form" onSubmit={handleSubmit}>
+        
+        {/* Nombre */}
         <div className="form-group">
-          <label className='form-field'>
+          <label className='form-field' htmlFor='nombre'>
             <input
               name="nombre"
               className="control"
               type="text"
               placeholder="Nombre"
-              value={formData.nombre}
-              onChange={handleInputChange}
+              value={nombre} //useState nombre, cambia el estado al escribir un nuevo nombre
+              onChange={(e) => setNombre(e.target.value)} //actualiza el estado nombre con el nuevo valor
               required
               autoComplete='off'
             />
-            {nombreError && (
-            <span className="error-message">{nombreError}</span>
-          )}
+            {errores.nombre && <span>{errores.nombre}</span>}
           </label>
-          
-        </div>
+         </div>
+
+         {/* Email */}
         <div className="form-group">
-          <label className='form-field'>
+          <label className='form-field' htmlFor='email'>
             <input
               name="email"
               className="control"
               type="text"
               placeholder="Correo"
-              value={formData.email}
-              onChange={handleInputChange}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              autoComplete='off'
             />
           </label>
         </div>
+
+        {/* Contraseña */}
         <div className="form-group">
-          <label className='form-field'>
+          <label className='form-field' htmlFor='contrasena'>
             <input
-              name="password"
+              name="contrasena"
               className="control"
               type="password"
               placeholder="Contraseña"
-              value={formData.password}
-              onChange={handleInputChange}
+              value={contrasena}
+              onChange={(e) => setContrasena(e.target.value)}
+              required
+              autoComplete='off'
             />
           </label>
         </div>
+
+        {/* Botones */}
         <section className="botons">
           <div className="center">
-            <button className="button" type="submit" onClick={validarFormulario}>
+            <button className="button" type="submit">
               Registro
             </button>
           </div>
@@ -97,6 +147,32 @@ const Access = () => {
           </div>
         </section>
       </form>
+
+
+
+      {/* Modal de agradecimiento */}
+        
+      <Modal 
+      isOpen={modalAbierto} 
+      onRequestClose={closeModal}
+      style={customStyles}
+      >
+        <div className='button_close_div'>
+          <div className='button_close_icon' onClick={closeModal}>
+          <FontAwesomeIcon icon={faTimes} /> {/* Icono de "X" */}
+          </div>
+        </div>
+       <div className='modal__thanks__text'>
+        <h3>¡Muchas gracias por registrarte!</h3>
+       </div>
+       <div className='button_gallery'>
+          <button className='button'>Galería</button>
+        </div>
+        
+        
+      </Modal>
+
+
     </section>
   );
 };

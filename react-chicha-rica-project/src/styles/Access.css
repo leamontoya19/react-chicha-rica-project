@@ -18,7 +18,7 @@ h4{
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #000000;
+    color: white;
     background-color: #8c8c8c;
     border: 1px solid #474343;
     margin-top: 5%;
@@ -46,12 +46,13 @@ h4{
 }
 
 .control {
-    min-width: 5vw;
+    min-width: 15vw;
     height: 1rem;
     padding: 10px;
     border: 1px solid #ffffff;
     border-radius: 13px;
     text-align: center;
+    font-size: 17px;
 
 }
 
@@ -62,7 +63,7 @@ h4{
     align-items: center;
 }
 
-.error-message{
+span{
     color: #fff;
 }
 
@@ -89,6 +90,40 @@ h4{
     overflow: hidden;
     transition: all 0.2s;
     cursor: pointer;
+}
+
+/*Modal agradecimiento*/
+.modal__thanks__text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.button_close_div{
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.button_close_icon{
+  font-weight: bold;
+  background-color: transparent;
+}
+
+.button_close_icon:hover{
+    color: #8c0303;
+}
+
+.button_close_modal{
+    margin-top: -100px;
+    margin-right: -497px;
+}
+
+.button_gallery{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -120,15 +155,6 @@ img .logo-user{
     position:relative;
     left: 38px;
     margin-bottom: -5px;
-}
-
-.control{
-    width: 21vw;
-    height: 1rem;
-    padding: 10px;
-    border: 1px solid #ffffff;
-    border-radius: 13px;
-    text-align: center;
 }
 
 .botons{
