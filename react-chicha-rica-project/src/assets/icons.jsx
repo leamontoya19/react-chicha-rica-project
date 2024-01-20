@@ -1,4 +1,4 @@
-export const MySvg = () => (<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264.11 242.64">
+export const LogoHeaderW = () => (<svg className="logo-header-w" id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264.11 242.64">
    <defs>
       <style>{`.cls-1 { fill: #fff; }`}</style>
     </defs>

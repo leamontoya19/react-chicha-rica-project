@@ -3,6 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Header.css';
+import BotonToggle from './BotonToggle';
 
 const Header = () => {
   return (
@@ -20,7 +21,7 @@ const Header = () => {
             <img id="logoPrincipal" src="./img/iconos/logoLetraBlanca.svg" alt="Logotipo Miguel Meixoeiro" className="hide-logo" />
           </Link>
           <ul>
-            <li><Link to="/contacto" id="sliderRojo" className="toggle-logo">CONTACTO</Link></li>
+            <BotonToggle/>
             <li><Link to="/about">ABOUT</Link></li>
             <li><Link to="/gallery">GALERIA</Link></li>
             <li><Link to="/access">ACCESO</Link></li>

@@ -1,8 +1,18 @@
 #main-header {
-    margin: 0px 40px 0;
-    position: relative;
-    z-index: 999999;
-  }
+  position: absolute;
+  z-index: 999999;
+  top: 0px;
+  right: 0px;
+}
+button{
+  text-decoration: none;
+  color: #fff;
+  font-weight: 300;
+}
+.toggle-logo :hover{
+  color: #f20519;
+    font-weight: 800;
+}
   
   /* menu hamburguesa /  .menu, .menubtn{   display:none; }  .menuicon i{   display:none; }     header nav {   display: flex;   justify-content: space-between;   align-items: center;   padding: 1rem; }  / header .logo {   color: #595959;   font-size: 1.5rem; } */
   nav img {

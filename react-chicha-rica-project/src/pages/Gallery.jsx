@@ -1,60 +1,63 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Modal from "../components/Modal"; // Asegúrate de importar el componente Modal
+import '../styles/Gallery.css';
 
 function Gallery() {
   const [images, setImages] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api.json'); // La ruta es relativa a la raíz del servidor
-        const data = await response.json();
-        console.log(data)
-
-        // Actualiza la propiedad img de cada objeto en data.data
-        const imagesWithFullPath = data.data.map(image => {
-          return {
-            ...image,
-            img: `/assets/img${image.url}`
-          };
-        });
-
-        setImages(imagesWithFullPath);
+        const response = await axios.get("/api.json");
+        const dataApi = response.data;
+        console.log(dataApi);
+        setImages(dataApi.data);
       } catch (error) {
-        console.error('Error fetching images:', error);
+        console.error("Error al obtener los datos de la API:", error);
       }
     };
 
     fetchData();
   }, []);
 
+  const openModal = (image) => {
+    setSelectedImage(image);
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+  };
+
   return (
-    <main className="gallery__container">
-      <div className="gallery_filter">
-        <a className="gallery__buttonCategory button">
-          <span className="btn-txt">CATEGORIAS</span>
-        </a>
-        <div className="gallery_filtersSubCategory">
-          <button className="gallery__buttonSubCategory buttonSubCategory" data-keyword="personas"><a href="#">PERSONAS</a></button>
-          <button className="gallery__buttonSubCategory buttonSubCategory" data-keyword="naturaleza"><a href="#">NATURALEZA</a></button>
-          <button className="gallery__buttonSubCategory buttonSubCategory" data-keyword="efectos"><a href="#">EFECTOS</a></button>
-          <button className="gallery__buttonSubCategory buttonSubCategory" data-keyword="arquitectura urbana"><a href="#">ARQUITECTURA URBANA</a></button>
-          <button className="gallery__buttonSubCategory buttonSubCategory" data-keyword="animales"><a href="#">ANIMALES</a></button>
-          <button className="gallery__buttonSubCategory buttonSubCategory" data-keyword="animales"><a href="../templates/gallery.html">TODAS</a></button>
-        </div>
-      </div>
-      <div className="gallery__fotos">
-        {images.map((image) => (
-          <div key={image.id} className="gallery__foto">
-            <img src={image.img} alt={image.title} />
-            <div className="gallery__info">
+    <div className="gallery-container">
+      {/* <GalleryFilter /> */}
+      <div className="pictures-container">
+        {Array.isArray(images) &&
+          images.map((image) => (
+            <div className={`${image.keyword}`} key={image.id} onClick={() => openModal(image)}>
+              <div className="img-container">
+                <img
+                  src={`img/${image.url}`}
+                  alt={image.title}
+                  style={{ width: "100%" }}
+                />
+              </div>
               <h3>{image.title}</h3>
               <p>Price: {image.price}</p>
               {/* Otras informaciones relevantes... */}
             </div>
-          </div>
-        ))}
+          ))}
       </div>
-    </main>
+
+      {selectedImage && (
+        <Modal
+          image={selectedImage}
+          onClose={closeModal}
+        />
+      )}
+    </div>
   );
 }
 
