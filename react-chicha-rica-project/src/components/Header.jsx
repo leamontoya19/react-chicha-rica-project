@@ -51,17 +51,19 @@ const Header = () => {
        {/* eliminé el checkbox que no lo necesitamos */}
         <label className="menu__icon" htmlFor="menu__btn"><span className="navicon"></span></label>
 
-        <nav>
-          <Link to="/" className="nav__logo logo">
-            <img id="logoPrincipal" src="./img/iconos/logoLetraBlanca.svg" alt="Logotipo Miguel Meixoeiro" className="hide-logo" />
+        <nav className='nav-bar'>
+          <Link to="/"  className="logo-header-r">
+          <LogoHeaderR />  
           </Link>
           <ul>
-            <li><Link to="/contacto" id="sliderRojo" className="toggle-logo">CONTACTO</Link></li>
+            <BotonToggle/>
             <li><Link to="/about">ABOUT</Link></li>
             <li><Link to="/gallery">GALERIA</Link></li>
             <li><Link to="/access">ACCESO</Link></li>
           </ul>
         </nav>
+        <SearchBar/>
+        <Suggestions/>
       </header>
     </div>
   );

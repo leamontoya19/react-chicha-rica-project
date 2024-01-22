@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../styles/SearchBar.css";
 import { FaSearch } from "react-icons/fa";
+import axios from "axios";
 
 export const SearchBar = ({ setResults }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -16,14 +17,12 @@ export const SearchBar = ({ setResults }) => {
     }
   };
 
- 
-
   const fetchData = async () => {
     try {
-      const response = await fetch(`/api.json?searchTerm=${input}`);
-      const data = await response.json();
+      const response = await axios.get(`/api.json?searchTerm=${input}`);
+      const data = response.data;
 
-      // Asegúrate de que data.data es un array
+      // Ensure that data.data is an array
       const results = Array.isArray(data.data)
         ? data.data.filter((product) => {
             return (
@@ -35,7 +34,12 @@ export const SearchBar = ({ setResults }) => {
           })
         : [];
 
-      setResults(results);
+      // Check if setResults is a function before calling it
+      if (typeof setResults === "function") {
+        setResults(results);
+      } else {
+        console.error("setResults is not a function");
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -47,7 +51,7 @@ export const SearchBar = ({ setResults }) => {
   };
 
   const handleIconClick = (e) => {
-    e.stopPropagation(); // Detener la propagación del evento
+    e.stopPropagation(); // Stop event propagation
     handleInputFocus();
   };
 
