@@ -6,7 +6,10 @@ export const Suggestions = ({ results, onClickOutside }) => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (suggestionsRef.current && !suggestionsRef.current.contains(event.target)) {
+      if (
+        suggestionsRef.current &&
+        !suggestionsRef.current.contains(event.target)
+      ) {
         onClickOutside();
       }
     };
@@ -18,17 +21,22 @@ export const Suggestions = ({ results, onClickOutside }) => {
     };
   }, [onClickOutside]);
 
+  // Verifica si results es undefined antes de mapearlo
   return (
     <div className="suggestions" ref={suggestionsRef}>
-      {results.map((result) => (
-        <div
-          key={result.id}
-          className="suggestion"
-          onClick={() => alert(`You selected ${result.title}!`)}
-        >
-          {result.title}
-        </div>
-      ))}
+      {results && results.length > 0 ? (
+        results.map((result) => (
+          <div
+            key={result.id}
+            className="suggestion"
+            onClick={() => alert(`You selected ${result.title}!`)}
+          >
+            {result.title}
+          </div>
+        ))
+      ) : (
+        <div>No hay sugerencias disponibles</div>
+      )}
     </div>
   );
 };

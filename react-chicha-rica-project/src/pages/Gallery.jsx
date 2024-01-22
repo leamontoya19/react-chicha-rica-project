@@ -74,7 +74,7 @@ function Gallery() {
     const mouseX = event.clientX - containerRect.left - containerRect.width / 2;
     const mouseY = event.clientY - containerRect.top - containerRect.height / 5;
     const rotateX = (mouseY / containerRect.height) * 3;
-    const rotateY = (mouseX / containerRect.width) * 6;
+    const rotateY = (mouseX / containerRect.width) * 9;
 
     const imgContainers = document.querySelectorAll(".img-container");
     imgContainers.forEach((imgContainer) => {

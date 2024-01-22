@@ -6,8 +6,10 @@ import Contact from './pages/Contact';
 import About from './pages/About';
 import Gallery from './pages/Gallery';
 // import UserProfile from './pages/UserProfile';
-import DiceRoller from './components/DiceRoller/DiceRoller';
+// import DiceRoller from './components/DiceRoller/DiceRoller';
 // import { FbIcon, IgIcon, LnkdIcon, MySvg, MySvg2, MySvg3, MySvg4, MySvg5, MySvg6 } from './assets/icons';
+
+
 
 function App() {
   return (
