@@ -1,15 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-
-
-h4{
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    flex-direction: column;
-    color: #000000;
+.formulario-container{
+    background-color: transparent;
+    width: 100vw;
+    margin: auto;
+    
 }
 
 .formulario {
@@ -25,8 +20,19 @@ h4{
     padding: 30px 40px 75px 40px;
     border-radius: 10px;
     height: auto;       
-    margin: 90px;
+    margin: auto;
+    width: 30%;
+    
+}
 
+h4{
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    color: #000000;
 }
 
 .form{
@@ -95,6 +101,7 @@ span{
 /*Modal agradecimiento*/
 .modal__thanks__text{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -169,6 +176,34 @@ img .logo-user{
     color: white;
 }
 
+.button {
+    margin-top: 10px;
+    font-family: 'raleway', Helvetica, sans-serif;
+    font-size: 17px;
+    background: #8c0303;
+    color: #d9d9d9;
+    padding: 0.7em 5.5em;
+    display: flex;
+    align-items: center;
+    border: 2px solid #66da4300;
+    border-radius: 5em;
+    overflow: hidden;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    border: 2px solid #d9d9d9;
+    background: #5e0203;
+    color: #fff;
+  }
+  
+  .button:active {
+    border: 2px solid #66da4300;
+    background: #f20519;
+    color: black;
+  }
+
 .check-term{
     display: flex;
     justify-content: center;
@@ -191,34 +226,3 @@ img .logo-user{
     color: #ffffff;
 }
 
-.button__register {
-    margin-top: 5px;
-    font-family: 'raleway', Helvetica, sans-serif;
-    font-size: 17px;
-    background: #8c0303;
-    color: #d9d9d9;
-    padding: 0.7em 4.5em;
-    display: flex;
-    align-items: center;
-    border: 2px solid #66da4300;
-    border-radius: 5rem;
-    overflow: hidden;
-    transition: all 0.2s;
-    cursor: pointer;
-  }
-  
-  .button__register:hover {
-    border: 2px solid #d9d9d9;
-    background: #00000000;
-    color: #fff;
-  }
-  
-  .button__register:active {
-    border: 2px solid #66da4300;
-    background: #f20519;
-    color: black;
-  }
-  .button__register a {
-    overflow: hidden;
-    padding: 0%;
-  }

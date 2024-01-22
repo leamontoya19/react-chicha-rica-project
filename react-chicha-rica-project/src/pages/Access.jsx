@@ -1,92 +1,92 @@
 import React, { useState } from 'react';
-import '../styles/Access.css'
-import Modal from 'react-modal'; //biblioteca para modal
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; //biblioteca icono cerrar modal
-import { faTimes } from '@fortawesome/free-solid-svg-icons'; //biblioteca icono cerrar modal
+import '../App.css';
+import '../styles/Access.css';
+import Modal from 'react-modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
-//?Estilos para el modal
+//Estilos modal agradecimiento
 const customStyles = {
   content: {
     backgroundColor: '#fefefe',
-    margin: 'auto', //centrar horizontalmente
+    margin: 'auto',
     top: '50%',
-    transform: 'translateY(-50%)', //centrar verticalmente
+    transform: 'translateY(-50%)',
     padding: '70px',
     border: 'none',
     borderRadius: '5px',
     width: '26%',
     display: 'flex',
     flexDirection: 'column',
-    textAlign: 'center', 
-   },
-  overlay:{ //sombra del modal
+    textAlign: 'center',
+    height: '25vh'
+  },
+  overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   }
 };
 
-
-
 const Access = () => {
-  // Estados para los campos del formulario y mensajes de error
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
   const [contrasena, setContrasena] = useState('');
-  const [errores, setErrores] = useState({}); //objeto vacío para errores
+  const [errores, setErrores] = useState({});
   const [modalAbierto, setModalAbierto] = useState(false);
+  const navigate = useNavigate();
 
-  // Expresión regular para validar el formato del nombre
   const nombreRegex = /^[A-Z][a-z]+$/;
 
-  // Función para manejar el envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
 
-
-  //VALIDACIONES---------------------------
-    // Validación de nombre
     const erroresValidacion = {};
-    if (!nombre.trim()) { //si el campo está vacío...
-      erroresValidacion.nombre = 'El nombre es obligatorio'; //salta el error
+
+    if (!nombre.trim()) {
+      erroresValidacion.nombre = 'El nombre es obligatorio';
     } else if (!nombreRegex.test(nombre)) {
-      erroresValidacion.nombre = //si no coincide con las regex salta nuevo error
-        'El nombre debe incluir la primera letra en mayúscula';
+      erroresValidacion.nombre = 'El nombre debe incluir la primera letra en mayúscula';
     }
 
-    // Validación email 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      erroresValidacion.email = 'Ingresa un email válido';
+      erroresValidacion.email = 'Ingresa un correo electrónico válido';
     }
 
-    // Validación de contraseña
     if (contrasena.length < 6) {
       erroresValidacion.contrasena = 'La contraseña debe tener al menos 6 caracteres';
     }
 
-    // Si hay errores, se actualiza el estado 'errores' y salta el mensaje correspondiente
     if (Object.keys(erroresValidacion).length > 0) {
       setErrores(erroresValidacion);
-    }
-      
-      
-    
-  //MODAL---------------------------
-    // Abrir el modal
+    } else {
+      // Aquí puedes manejar la lógica para enviar los datos
+      console.log('Datos enviados:', { nombre, email, contrasena });
+
       setModalAbierto(true);
-    
+      setErrores({});
+    }
   };
 
-    // Función para cerrar el modal
   const closeModal = () => {
+    //Cerrar el modal y se borran los errores
     setModalAbierto(false);
+    setErrores({});
+  };
+
+  const redirectToGallery = () => {
+    navigate('/gallery');
+  };
+
+  const redirectToLogin = () => {
+    navigate('/login');
   };
 
   return (
-    <section className="formulario">
+    <main className='formulario-container'>
+      <section className="formulario">
       <h4>Crear Cuenta</h4>
       <form className="form" onSubmit={handleSubmit}>
-        
-        {/* Nombre */}
         <div className="form-group">
           <label className='form-field' htmlFor='nombre'>
             <input
@@ -94,16 +94,14 @@ const Access = () => {
               className="control"
               type="text"
               placeholder="Nombre"
-              value={nombre} //useState nombre, cambia el estado al escribir un nuevo nombre
-              onChange={(e) => setNombre(e.target.value)} //actualiza el estado nombre con el nuevo valor
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
               required
               autoComplete='off'
             />
             {errores.nombre && <span>{errores.nombre}</span>}
           </label>
-         </div>
-
-         {/* Email */}
+        </div>
         <div className="form-group">
           <label className='form-field' htmlFor='email'>
             <input
@@ -116,10 +114,9 @@ const Access = () => {
               required
               autoComplete='off'
             />
+            {errores.email && <span>{errores.email}</span>}
           </label>
         </div>
-
-        {/* Contraseña */}
         <div className="form-group">
           <label className='form-field' htmlFor='contrasena'>
             <input
@@ -132,10 +129,9 @@ const Access = () => {
               required
               autoComplete='off'
             />
+            {errores.contrasena && <span>{errores.contrasena}</span>}
           </label>
         </div>
-
-        {/* Botones */}
         <section className="botons">
           <div className="center">
             <button className="button" type="submit">
@@ -143,37 +139,30 @@ const Access = () => {
             </button>
           </div>
           <div className="center">
-            <button className="button">Iniciar sesión</button>
+            <button className="button" onClick={redirectToLogin}>Iniciar sesión</button>
           </div>
         </section>
       </form>
-
-
-
-      {/* Modal de agradecimiento */}
-        
       <Modal 
-      isOpen={modalAbierto} 
-      onRequestClose={closeModal}
-      style={customStyles}
+        isOpen={modalAbierto} 
+        onRequestClose={closeModal}
+        style={customStyles}
       >
         <div className='button_close_div'>
           <div className='button_close_icon' onClick={closeModal}>
-          <FontAwesomeIcon icon={faTimes} /> {/* Icono de "X" */}
+            <FontAwesomeIcon icon={faTimes} />
           </div>
         </div>
-       <div className='modal__thanks__text'>
-        <h3>¡Muchas gracias por registrarte!</h3>
-       </div>
-       <div className='button_gallery'>
-          <button className='button'>Galería</button>
+        <div className='modal__thanks__text'>
+          <h3>¡Muchas gracias por registrarte!</h3>
         </div>
-        
-        
+        <div className='button_gallery'>
+          <button className='button' onClick={redirectToGallery}>Galería</button>
+        </div>
       </Modal>
-
-
     </section>
+    </main>
+    
   );
 };
 

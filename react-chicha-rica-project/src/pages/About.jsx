@@ -1,11 +1,13 @@
 // About.jsx
 import React from 'react';
+import '../styles/About.css'
+import miguelImg from '../assets/img/seeking-light.jpg'
 
 const About = () => {
   return (
     <main className="about__container">
       <figure className="about__figure">
-          <img className="about__img" src="../img/parthiv-sailesh-5VUI8uR8yy8-unsplash.jpg" alt="imagen-autor" />
+          <img className="about__img" src={miguelImg} alt="imagen-autor" />
       </figure>
       <article className="about__article">
           <h2 className="about__title">MIGUEL MEIXOEIRO</h2>
