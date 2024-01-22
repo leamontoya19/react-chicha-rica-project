@@ -11,16 +11,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "@fortawesome/fontawesome-svg-core": "^6.5.1",
-    "@fortawesome/free-solid-svg-icons": "^6.5.1",
-    "@fortawesome/react-fontawesome": "^0.2.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-hook-form": "^7.49.3",
-    "react-modal": "^3.16.1",
-    "react-router-dom": "^6.21.3"
-=======
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@material-ui/core": "^4.12.4",
@@ -32,7 +22,6 @@
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.21.2"
->>>>>>> 1ccc98f38c2335fcbe3e4de06319f30017420f0e
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
