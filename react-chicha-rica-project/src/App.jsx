@@ -1,29 +1,34 @@
 // App.jsx
-
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
-import Footer from './components/Footer'; 
+import Footer from './components/Footer';
 import About from './pages/About';
 import Gallery from './pages/Gallery';
-import Access from './pages/Acceso';
-import Contacto from './pages/Contacto';
+import Access from './pages/Access';
+import Home from './pages/Home';
+import Thanks from './pages/Thanks'; //prueba Thanks Page
 
 function App() {
 
   return (
     <Router>
       <Header />
-      
-        <Routes>
-        <Route path="/access" element={<Access />}/>
-        <Route path="/contacto" element={<Contacto />} />
+      <Routes>
+        <Route path="/" element={<Home />} /> 
         <Route path="/about" element={<About />} />
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/" element={() => <div>Inicio</div>} />
-        </Routes>
-        <Footer />
+        <Route path="/access" element={<Access />}/>
+      </Routes>
+      
+      {/* <Thanks /> */}
+    
 
+      <Footer />
+         
+        
+      
+      
     </Router>
   );
 }

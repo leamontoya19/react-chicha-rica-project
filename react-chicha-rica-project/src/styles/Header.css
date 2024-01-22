@@ -1,15 +1,41 @@
-#main-header {
-    margin: 0px 40px 0;
-    position: relative;
-    z-index: 999999;
-  }
-  
-  /* menu hamburguesa /  .menu, .menubtn{   display:none; }  .menuicon i{   display:none; }     header nav {   display: flex;   justify-content: space-between;   align-items: center;   padding: 1rem; }  / header .logo {   color: #595959;   font-size: 1.5rem; } */
-  nav img {
-    height: auto;
-    max-width: 25%;
-  }
-  
+.main-header {
+  position: absolute;
+  z-index: 999999;
+  top: 0px;
+}
+
+.nav-bar{
+  width: max-content;
+  display: flex;
+  justify-content:space-between; /* revisar*/
+  align-items: flex-start;;
+  padding: 1rem;
+  column-gap: 700px;
+}
+
+.logo-header-r{
+  height: 160px;
+}
+
+.toggle-logo {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 300;
+  background:none;
+  border-radius: 0%;
+  border: 0cap;
+  cursor: pointer;
+  font-family: inherit;
+  margin-top: -10px;
+  padding: 0px;
+}
+
+.toggle-logo:hover{
+  text-decoration: none;
+  color: #f20519;
+  font-weight: 800;
+
+}
   header ul {
     list-style: none;
     display: flex;
