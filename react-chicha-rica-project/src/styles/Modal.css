@@ -1,0 +1,16 @@
+.modal-container .modal {
+    position: absolute;
+    width: 50%;
+    top: 50px; /* Adjust this value */
+    left: 25%;
+    transition: all 0.4s;
+    padding: 30px;
+    border: 1px solid #c3c3c3;
+    border-radius: 5px;
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
+  }
+  
+  #image {
+    top: 50px; /* Adjust this value */
+  }
+  
