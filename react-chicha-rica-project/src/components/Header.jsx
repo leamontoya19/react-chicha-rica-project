@@ -56,14 +56,16 @@ const Header = () => {
           <LogoHeaderR />  
           </Link>
           <ul>
+            <SearchBar/>
+            <Suggestions/>
             <BotonToggle/>
             <li><Link to="/about">ABOUT</Link></li>
             <li><Link to="/gallery">GALERIA</Link></li>
             <li><Link to="/access">ACCESO</Link></li>
+            <button className='cart-header'>🛒</button>
           </ul>
         </nav>
-        <SearchBar/>
-        <Suggestions/>
+       
       </header>
     </div>
   );

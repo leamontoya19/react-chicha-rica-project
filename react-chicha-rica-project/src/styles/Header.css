@@ -1,5 +1,5 @@
 .main-header {
-  position: absolute;
+  position: sticky;
   z-index: 999999;
   top: 0px;
 }
@@ -10,7 +10,7 @@
   justify-content:space-between; /* revisar*/
   align-items: flex-start;;
   padding: 1rem;
-  column-gap: 700px;
+  column-gap: 410px;
 }
 
 .logo-header-r{

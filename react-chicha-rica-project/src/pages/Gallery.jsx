@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { useNavigate, useParams } from "react-router-dom"
 import GalleryFilter from "../components/GalleryFilter"
-import Header from "../components/Header"
 import "../styles/Gallery.css"
+import Modal from "../components/Modal"
 
 function Gallery() {
   const navigate = useNavigate();
@@ -37,6 +37,7 @@ function Gallery() {
         });
         setImages(filteredImages);
       } catch (error) {
+        console.error("Error al obtener los datos de la API:", error);
         console.error("Error al obtener los datos de la API:", error);
       }
     };
@@ -107,6 +108,7 @@ function Gallery() {
   // };
 
   return (
+    <>
     <div className="gallery-container" onMouseMove={handleMouseMove} onMouseLeave={resetRotation}>
       <GalleryFilter onFilterChange={handleFilterChange} />
       <div className="pictures-container">
@@ -121,6 +123,7 @@ function Gallery() {
       </div>
       {modal && selectedImage && <Modal image={selectedImage} closeModal={closeModal} />}
     </div>
+    </>
   );
 }
 
