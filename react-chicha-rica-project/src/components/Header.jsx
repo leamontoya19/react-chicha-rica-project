@@ -3,15 +3,29 @@ import { Link } from 'react-router-dom';
 import '../styles/Header.css';
 import { SearchBar } from './SearchBar';
 import { Suggestions } from './Suggestions';
-import { BurgerButton } from './BurguerButton';
+import { BurgerButton } from './BurguerButton';  // Asegúrate de importar correctamente BurgerButton
 import axios from 'axios';
-import { useMediaQuery } from 'react-responsive';
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [results, setResults] = useState([]);
-  const isMobile = useMediaQuery({ maxWidth: 767 }); // Hasta 767px se considera móvil
+  const [showBurgerButton, setShowBurgerButton] = useState(false); // Define la variable showBurgerButton
+
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      try {
+        const response = await axios.get(
+          `/api/suggestions?searchTerm=${searchTerm}`
+        );
+        setSuggestions(response.data);
+      } catch (error) {
+        console.error('Error al obtener sugerencias:', error);
+      }
+    };
+
+    fetchSuggestions();
+  }, [searchTerm]);
 
   const handleSearchChange = (newSearchTerm) => {
     setSearchTerm(newSearchTerm);
@@ -34,13 +48,13 @@ const Header = () => {
 
   return (
     <header className='header'>
-      {isMobile && (
+      {showBurgerButton && (
         <div className='burguer-container'>
           <BurgerButton onClick={handleBurgerClick} />
         </div>
       )}
 
-      <nav className='navbar' style={{ display: isMobile ? 'none' : 'block' }}>
+      <nav className='navbar' style={{ display: showBurgerButton ? 'none' : 'block' }}>
         <Link to='/' className='nav__logo logo'>
           <img
             id='logoPrincipal'
@@ -80,4 +94,3 @@ const Header = () => {
 };
 
 export default Header;
-git
