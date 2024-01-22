@@ -1,60 +1,126 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react"
+import axios from "axios"
+import { useNavigate, useParams } from "react-router-dom"
+import GalleryFilter from "../components/GalleryFilter"
+import Header from "../components/Header"
+import "../styles/Gallery.css"
 
 function Gallery() {
+  const navigate = useNavigate();
+  const { category } = useParams();
   const [images, setImages] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null)
+  const [modal, setModal] = useState(false);
+  const [containerRect, setContainerRect] = useState(null)
+  const [filter, setFilter] = useState(category || "")
+  const [searchTerm, setSearchTerm] = useState("")
+  const [suggestions, setSuggestions] = useState([])
+
+  const handleFilterChange = (newCategory) => {
+    setFilter(newCategory)
+    if (newCategory === "") {
+      navigate("/gallery")
+    } else {
+      navigate(`/gallery/${newCategory}`)
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api.json'); // La ruta es relativa a la raíz del servidor
-        const data = await response.json();
-        console.log(data)
-
-        // Actualiza la propiedad img de cada objeto en data.data
-        const imagesWithFullPath = data.data.map(image => {
-          return {
-            ...image,
-            img: `/assets/img${image.url}`
-          };
+        const response = await axios.get("/api.json");
+        const dataApi = response.data;
+        const filteredImages = dataApi.data.filter((image) => {
+          const hasCategory = !filter || image.keyword.includes(filter);
+          const matchesSearch = !searchTerm || image.title.toLowerCase().includes(searchTerm.toLowerCase());
+          return hasCategory && matchesSearch;
         });
-
-        setImages(imagesWithFullPath);
+        setImages(filteredImages);
       } catch (error) {
-        console.error('Error fetching images:', error);
+        console.error("Error al obtener los datos de la API:", error);
       }
     };
 
     fetchData();
-  }, []);
+
+    const galleryContainer = document.querySelector(".gallery-container");
+    setContainerRect(galleryContainer.getBoundingClientRect());
+
+    const handleResize = () => {
+      setContainerRect(galleryContainer.getBoundingClientRect());
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [category, filter, searchTerm]);
+
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      try {
+        const response = await axios.get(`/api/suggestions?searchTerm=${searchTerm}`);
+        setSuggestions(response.data);
+      } catch (error) {
+        console.error("Error al obtener sugerencias:", error);
+      }
+    };
+  
+    fetchSuggestions();
+  }, [searchTerm]);
+
+  const handleMouseMove = (event) => {
+    const mouseX = event.clientX - containerRect.left - containerRect.width / 2;
+    const mouseY = event.clientY - containerRect.top - containerRect.height / 5;
+    const rotateX = (mouseY / containerRect.height) * 3;
+    const rotateY = (mouseX / containerRect.width) * 6;
+
+    const imgContainers = document.querySelectorAll(".img-container");
+    imgContainers.forEach((imgContainer) => {
+      imgContainer.style.transform = `perspective(1000px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+  };
+
+  const resetRotation = () => {
+    const imgContainers = document.querySelectorAll(".img-container");
+    imgContainers.forEach((imgContainer) => {
+      imgContainer.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+    });
+  };
+
+  const openModal = (image) => {
+    setSelectedImage(image);
+    setModal(true);
+    resetRotation();
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+    setModal(false);
+    resetRotation();
+  };
+
+  // const handleSuggestionClick = (selectedSuggestion) => {
+  //   setSearchTerm(selectedSuggestion.title);
+  //   // Realiza acciones adicionales si es necesario
+  // };
 
   return (
-    <main className="gallery__container">
-      <div className="gallery_filter">
-        <a className="gallery__buttonCategory button">
-          <span className="btn-txt">CATEGORIAS</span>
-        </a>
-        <div className="gallery_filtersSubCategory">
-          <button className="gallery__buttonSubCategory buttonSubCategory" data-keyword="personas"><a href="#">PERSONAS</a></button>
-          <button className="gallery__buttonSubCategory buttonSubCategory" data-keyword="naturaleza"><a href="#">NATURALEZA</a></button>
-          <button className="gallery__buttonSubCategory buttonSubCategory" data-keyword="efectos"><a href="#">EFECTOS</a></button>
-          <button className="gallery__buttonSubCategory buttonSubCategory" data-keyword="arquitectura urbana"><a href="#">ARQUITECTURA URBANA</a></button>
-          <button className="gallery__buttonSubCategory buttonSubCategory" data-keyword="animales"><a href="#">ANIMALES</a></button>
-          <button className="gallery__buttonSubCategory buttonSubCategory" data-keyword="animales"><a href="../templates/gallery.html">TODAS</a></button>
-        </div>
-      </div>
-      <div className="gallery__fotos">
-        {images.map((image) => (
-          <div key={image.id} className="gallery__foto">
-            <img src={image.img} alt={image.title} />
-            <div className="gallery__info">
-              <h3>{image.title}</h3>
-              <p>Price: {image.price}</p>
-              {/* Otras informaciones relevantes... */}
+    <div className="gallery-container" onMouseMove={handleMouseMove} onMouseLeave={resetRotation}>
+      <GalleryFilter onFilterChange={handleFilterChange} />
+      <div className="pictures-container">
+        {Array.isArray(images) &&
+          images.map((image) => (
+            <div className={`${image.keyword}`} key={image.id} onClick={() => openModal(image)}>
+              <div className="img-container">
+                <img src={`img/${image.url}`} alt={image.title} />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
-    </main>
+      {modal && selectedImage && <Modal image={selectedImage} closeModal={closeModal} />}
+    </div>
   );
 }
 
