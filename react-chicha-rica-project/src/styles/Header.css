@@ -4,11 +4,15 @@
   top: 0px;
   right: 0px;
 }
-button{
+.toggle-logo{
   text-decoration: none;
   color: #fff;
   font-weight: 300;
+ 
 }
+
+
+
 .toggle-logo :hover{
   color: #f20519;
     font-weight: 800;
