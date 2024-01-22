@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // About.jsx
 import React from 'react';
 import '../styles/About.css'
@@ -23,3 +24,17 @@ const About = () => {
 };
 
 export default About;
+=======
+// About.jsx
+import React from 'react';
+
+const About = () => {
+  return (
+    <div>
+      {/* Contenido de la página Acerca de */}
+    </div>
+  );
+};
+
+export default About;
+>>>>>>> 1ccc98f38c2335fcbe3e4de06319f30017420f0e

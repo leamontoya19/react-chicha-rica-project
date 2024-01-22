@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .maincta {
   display: flex;
   flex-direction: row;
@@ -6,6 +7,8 @@
   margin-left: 44%;
 }
 
+=======
+>>>>>>> 1ccc98f38c2335fcbe3e4de06319f30017420f0e
 .imgcta {
   height: 247%;
   width: auto;
@@ -48,7 +51,7 @@
   font-weight: 600;
 }
 
-.cardcontent {
+.card-content {
   position: absolute;
   top: 0;
   left: 0;
@@ -70,10 +73,10 @@
   text-decoration: none;
 }
 
-.card:hover .card__content {
+.card:hover .card-content {
   transform: rotateX(0deg);
 }
-.cardtitle {
+.card-title {
   margin: 0;
   font-size: 24px;
   color: #f2f2f2;
@@ -85,7 +88,7 @@
   scale: 0;
 }
 
-.carddescription {
+.card-description {
   margin: 10px 0 0;
   font-size: 1.8vw;
   color: #777;
@@ -93,7 +96,7 @@
   text-align: center;
 }
 
-.buttonbanner {
+.button-banner {
   margin-top: 10px;
   font-family: "raleway", Helvetica, sans-serif;
   font-size: 17px;
@@ -108,23 +111,24 @@
   transition: all 0.2s;
   cursor: pointer;
 }
-.buttonbanner:hover {
+.button-banner:hover {
   border: 2px solid #d9d9d9;
   background: #00000000;
   color: #fff;
 }
 
-.buttonbanner:active {
+.button-banner:active {
   border: 2px solid #66da4300;
   background: #f20519;
   color: black;
 }
-.buttonbanner a {
+.button-banner a {
   overflow: hidden;
   padding: 0%;
+  
 }
 
-.card__title {
+.card-title {
   margin: 0;
   font-size: 24px;
   color: #f2f2f2;
@@ -136,13 +140,14 @@
   scale: 0;
 }
 
-.card__description {
+.card-description {
   margin: 10px 0 0;
   font-size: 1.8vw;
   color: #777;
   line-height: 1.4;
   text-align: center;
 }
+<<<<<<< HEAD
 
 .button__banner {
   margin-top: 10px;
@@ -207,3 +212,5 @@
   padding: 0%;
 }
 
+=======
+>>>>>>> 1ccc98f38c2335fcbe3e4de06319f30017420f0e

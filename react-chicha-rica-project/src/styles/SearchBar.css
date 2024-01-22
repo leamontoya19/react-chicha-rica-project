@@ -1,0 +1,9 @@
+.search-bar {
+  width: 30px; /* Ancho inicial */
+  overflow: hidden;
+  transition: width 0.3s ease; /* Agrega una transición para suavizar el cambio de ancho */
+}
+
+.search-bar.expanded {
+  width: 200px; /* Ancho expandido */
+}

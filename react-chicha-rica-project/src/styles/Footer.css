@@ -1,4 +1,4 @@
-footer {
+.footer {
     /* background: #fff; */
     text-align: center;
     margin: 1% -1%;
@@ -9,7 +9,7 @@ footer {
     flex-direction: row;
     justify-content: flex-end;
   }
-  
-  footer img {
-    height: 40px;
-  }
+
+.logo-footer-letters{
+  width: 150px;
+}
