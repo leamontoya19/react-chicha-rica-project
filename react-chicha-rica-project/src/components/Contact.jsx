@@ -83,7 +83,7 @@ const Contact = () => {
             style={{ resize: 'none' }}
           ></textarea>
           <div className="center">
-            <button type="button" className="button" onClick={validarFormulario}>
+            <button type="button" className="button-contact" onClick={validarFormulario}>
               Submit
             </button>
           </div>

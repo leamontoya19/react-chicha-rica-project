@@ -1,9 +1,9 @@
-#main-header {
-  position: absolute;
+.main-header {
+  position: sticky;
   z-index: 999999;
   top: 0px;
-  right: 0px;
 }
+<<<<<<< HEAD
 .toggle-logo{
   text-decoration: none;
   color: #fff;
@@ -14,16 +14,41 @@
 
 
 .toggle-logo :hover{
-  color: #f20519;
-    font-weight: 800;
+=======
+
+.nav-bar{
+  width: max-content;
+  display: flex;
+  justify-content:space-between; /* revisar*/
+  align-items: flex-start;;
+  padding: 1rem;
+  column-gap: 410px;
 }
-  
-  /* menu hamburguesa /  .menu, .menubtn{   display:none; }  .menuicon i{   display:none; }     header nav {   display: flex;   justify-content: space-between;   align-items: center;   padding: 1rem; }  / header .logo {   color: #595959;   font-size: 1.5rem; } */
-  nav img {
-    height: auto;
-    max-width: 25%;
-  }
-  
+
+.logo-header-r{
+  height: 160px;
+}
+
+.toggle-logo {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 300;
+  background:none;
+  border-radius: 0%;
+  border: 0cap;
+  cursor: pointer;
+  font-family: inherit;
+  margin-top: -10px;
+  padding: 0px;
+}
+
+.toggle-logo:hover{
+  text-decoration: none;
+>>>>>>> 1ccc98f38c2335fcbe3e4de06319f30017420f0e
+  color: #f20519;
+  font-weight: 800;
+
+}
   header ul {
     list-style: none;
     display: flex;

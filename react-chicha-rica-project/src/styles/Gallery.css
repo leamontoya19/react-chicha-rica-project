@@ -1,6 +1,7 @@
 .gallery__container {
   display: grid;
   margin: 2px;
+  
 }
 
 .pictures-container {
@@ -15,16 +16,22 @@
 }
 
 .img-container {
-  -webkit-transition: all 350ms ease;
-  transition: all 350ms ease;
   cursor: pointer;
-  margin-bottom: 12px
+  margin-bottom: 12px;
+  position: relative;
+  margin-bottom: 60px; 
 }
 
-.img-container:hover {
-  filter: opacity(.8);
-
+.img-container img {
+  width: 100%;
 }
+
+.gallery-container {
+  position: relative;
+}
+
+
+
 
 @media(max-width: 991px) {
   .pictures-container {
@@ -41,6 +48,3 @@
     column-count: 1;
   }
 }
-
-  
- 
