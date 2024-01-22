@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Header.css';
+import { LogoHeaderR,LogoHeaderW } from '../assets/icons';
+import BotonToggle from './BotonToggle';
 import { SearchBar } from './SearchBar';
 import { Suggestions } from './Suggestions';
 import { BurgerButton } from './BurguerButton';  // Asegúrate de importar correctamente BurgerButton
@@ -47,49 +49,31 @@ const Header = () => {
   };
 
   return (
-    <header className='header'>
-      {showBurgerButton && (
-        <div className='burguer-container'>
-          <BurgerButton onClick={handleBurgerClick} />
+    <div className='main-header'>
+      <header>
+        <div className="menu__icon">
+          <i className="fas fa-bars icon"></i>
         </div>
-      )}
+       {/* eliminé el checkbox que no lo necesitamos */}
+        <label className="menu__icon" htmlFor="menu__btn"><span className="navicon"></span></label>
 
-      <nav className='navbar' style={{ display: showBurgerButton ? 'none' : 'block' }}>
-        <Link to='/' className='nav__logo logo'>
-          <img
-            id='logoPrincipal'
-            src='./img/iconos/logoLetraBlanca.svg'
-            alt='Logotipo Miguel Meixoeiro'
-            className='hide-logo'
-          />
-        </Link>
-        <ul>
-          <li>
-            <Link to='/contacto' id='sliderRojo' className='toggle-logo'>
-              CONTACTO
-            </Link>
-          </li>
-          <li>
-            <Link to='/about'>ABOUT</Link>
-          </li>
-          <li>
-            <Link to='/gallery'>GALERIA</Link>
-          </li>
-          <li>
-            <Link to='/access'>ACCESO</Link>
-          </li>
-        </ul>
-      </nav>
-      <div className='search-bar-container'>
-        <SearchBar setResults={setResults} />
-        {results && results.length > 0 && (
-          <Suggestions
-            results={results}
-            onClickOutside={handleSearchClickOutside}
-          />
-        )}
-      </div>
-    </header>
+        <nav className='nav-bar'>
+          <Link to="/"  className="logo-header-r">
+          <LogoHeaderR />  
+          </Link>
+          <ul>
+            <SearchBar/>
+            <Suggestions/>
+            <BotonToggle/>
+            <li><Link to="/about">ABOUT</Link></li>
+            <li><Link to="/gallery">GALERIA</Link></li>
+            <li><Link to="/access">ACCESO</Link></li>
+            <button className='cart-header'>🛒</button>
+          </ul>
+        </nav>
+       
+      </header>
+    </div>
   );
 };
 

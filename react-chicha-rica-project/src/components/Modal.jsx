@@ -1,19 +1,21 @@
 import React from 'react';
-import '../styles/Modal.css';
+import "../styles/Modal.css";
 
-const Modal = () => {
-  const closeCartModal = () => {
-    // Implement the logic to close the modal here
-  };
-
+const Modal = ({ image, Close }) => {
   return (
-    <div id="cartModal" className="modal">
-      <span className="close" onClick={closeCartModal}>&times;</span>
-      <h2>Carrito de Compras</h2>
-      <div>
-        <div id="cartItems" className="cart-items"></div>
-        <p>Cantidad de artículos en el carrito: <span id="cartCantidad">0</span></p>
-        <p>Cantidad total en el carrito: €<span id="cartTotal">0.00</span></p>
+    <div className="modal">
+      <div className="modal-content">
+        <span className="close" onClick={Close}>&times;</span>
+        <img
+          src={`img/${image.url}`}
+          alt={image.title}
+          style={{ width: "100%" }}
+        />
+        <h3>{image.title}</h3>
+        <p>Price: {image.price}</p>
+        <button className='penta'>⛧</button>
+        <button className='cart'>🛒</button>
+        {/* Agrega más información extendida según sea necesario */}
       </div>
     </div>
   );

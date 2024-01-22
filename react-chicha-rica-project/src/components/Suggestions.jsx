@@ -21,7 +21,11 @@ export const Suggestions = ({ results, onClickOutside }) => {
     };
   }, [onClickOutside]);
 
-  // Verifica si results es undefined antes de mapearlo
+  // Check if 'results' is undefined or not an array
+  if (!results || !Array.isArray(results)) {
+    return null; // or handle accordingly based on your requirements
+  }
+
   return (
     <div className="suggestions" ref={suggestionsRef}>
       {results && results.length > 0 ? (
