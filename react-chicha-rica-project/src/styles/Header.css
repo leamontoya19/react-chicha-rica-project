@@ -36,12 +36,12 @@
   font-weight: 800;
 
 }
-  header ul {
-    list-style: none;
-    display: flex;
-    gap: 60px;
-    font-size: 1.4em;
-  }
+.main-header ul {
+  list-style: none;
+  display: flex;
+  gap: 60px;
+  font-size: 1.4em;
+}
   
   header li a {
     text-decoration: none;
@@ -49,10 +49,10 @@
     font-weight: 300;
   }
   
-  header li a:hover {
-    color: #f20519;
-    font-weight: 800;
-  }
+.main-header li a:hover {
+  color: #f20519;
+  font-weight: 800;
+}
 .cart-header{
   text-decoration: none;
   color: #fff;

@@ -1,41 +1,29 @@
-// DiceRoller.js
-import React, { useState, useEffect } from 'react';
-import DiceFace from './DiceFace';
-import '../../styles/DiceRoller.css';
-
-const isDevelopment = process.env.NODE_ENV === 'development';
+import React from 'react';
+import DiceFace from './DiceFace';  // Ajusta la ruta según tu estructura de archivos
 
 const DiceRoller = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
-
-  const handleScroll = () => {
-    setScrollPosition(window.scrollY);
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  
-
-  const renderDiceFaces = () => {
-    const faces = [];
-
-    for (let i = 1; i <= 4; i++) {
-      faces.push(<DiceFace key={i} image={`${isDevelopment ? '' : process.env.PUBLIC_URL}/img/faces/face${i}.jpg`} />);
-    }
-
-    faces.push(<DiceFace key={5} image={`${isDevelopment ? '' : process.env.PUBLIC_URL}/img/faces/face1.jpg`} />);
-    faces.push(<DiceFace key={6} image={`${isDevelopment ? '' : process.env.PUBLIC_URL}/img/faces/face5.jpg`} />);
-    
-
-    return faces;
-  };
-
-  return <div className="dice-roller">{renderDiceFaces()}</div>;
+  return (
+    <div className="m3_dice_section">
+      <div className="pr_section">
+        <div className="dice_items">
+          <DiceFace
+            imageUrl="/_next/image?url=..."
+            title="Hince an annual OOH Campaign"
+            number={23}
+          />
+          <DiceFace
+            imageUrl="/_next/image?url=..."
+            title="TAMBURINS 2023 OOH Campaign"
+            number={23}
+          />
+          {/* Agrega más instancias de DiceFace según sea necesario */}
+        </div>
+        <div className="pr_desc">
+          {/* Descripción del proyecto */}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default DiceRoller;

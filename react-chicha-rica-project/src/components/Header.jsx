@@ -1,27 +1,28 @@
-// Header.jsx
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Header.css';
 import { LogoHeaderR,LogoHeaderW } from '../assets/icons';
 import BotonToggle from './BotonToggle';
-import { SearchBar } from "./SearchBar";
-import { Suggestions } from "./Suggestions";
-
-import axios from "axios";
+import { SearchBar } from './SearchBar';
+import { Suggestions } from './Suggestions';
+import { BurgerButton } from './BurguerButton';  // Asegúrate de importar correctamente BurgerButton
+import axios from 'axios';
 
 const Header = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [results, setResults] = useState([]);
+  const [showBurgerButton, setShowBurgerButton] = useState(false); // Define la variable showBurgerButton
 
   useEffect(() => {
     const fetchSuggestions = async () => {
       try {
-        const response = await axios.get(`/api/suggestions?searchTerm=${searchTerm}`);
+        const response = await axios.get(
+          `/api/suggestions?searchTerm=${searchTerm}`
+        );
         setSuggestions(response.data);
       } catch (error) {
-        console.error("Error al obtener sugerencias:", error);
+        console.error('Error al obtener sugerencias:', error);
       }
     };
 
@@ -39,7 +40,12 @@ const Header = () => {
 
   const handleSearchClickOutside = () => {
     // Lógica para cerrar las sugerencias
-    setResults([]); // Esto debería limpiar los resultados
+    setResults([]);
+  };
+
+  const handleBurgerClick = () => {
+    // Puedes agregar lógica adicional al hacer clic en el botón hamburguesa
+    console.log('Burger button clicked');
   };
 
   return (
