@@ -1,11 +1,12 @@
 import React from 'react'
 import '../styles/Footer.css'
+import { LogoFooterLetters } from '../assets/icons'
 
 function Footer() {
   return (
-    <div>
+    <div className='footer'>
       <footer>
-           <img src="./img/iconos/logoPlanoBlanco.svg" alt="Logotipo Miguel Meixoeiro" />
+           <LogoFooterLetters />
       </footer>
     </div>
   )

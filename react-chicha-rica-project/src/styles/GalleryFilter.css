@@ -1,0 +1,68 @@
+  /*Filtros categorías*/
+.gallery-filter {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  /* gap: 15px;
+  margin-top: 50px; */
+}
+  
+.filter-title {
+  background-color: #262726;
+  color: red;
+  border: #830c0c solid 0.5px;
+  font-size: 0.8em;
+}
+
+.gallery-button {
+  color: red;
+}
+  
+.gallery-button:hover {
+  font-weight: bolder;
+  color:#830c0c;
+  border: red solid 2px;
+
+ 
+}
+  
+  .filter-btn-container {
+    display: flex;
+    align-items: center;
+    margin: 40px auto;
+    gap: 30px;
+    height: 10%;
+    background-color: #830c0c;
+    padding: 1%;
+    border-radius: 43px;
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+
+  
+  .gallery-filters button a {
+    text-decoration: none;
+    color: white;
+    border: #830c0c solid 0.5px;
+    font-size: 1em;
+  }
+  
+  .gallery-filters button a:hover {
+    border: #830c0c solid 0.5px;
+    font-size: 1.02em;
+    font-weight: 700;
+  }
+  
+  .gallery-filters button a:active {
+    border: #830c0c solid 0.5px;
+    font-size: 1.02em;
+    font-weight: 500;
+    color: #f20519;
+  }
+  
+  .gallery-filters button a:focus {
+    border: #830c0c solid 0.5px;
+    font-size: 1.04em;
+    font-weight: 800;
+    color: #f20519;
+  }
