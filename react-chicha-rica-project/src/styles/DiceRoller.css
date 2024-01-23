@@ -1,0 +1,17 @@
+/* DiceRoller.css */
+.dice-roller {
+    height: 600vh; /* 6 faces * 100vh (viewport height) */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .dice-face {
+    width: 100%;
+    height: 50vh; /* Ajusta según sea necesario */
+    background-size: cover;
+    z-index: 1; /* Ajusta según sea necesario */
+    position: relative;
+  }
+  
+  
