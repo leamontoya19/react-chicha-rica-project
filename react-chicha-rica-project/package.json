@@ -1,6 +1,5 @@
 {
   "name": "react-chicha-rica-project",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -13,14 +12,21 @@
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@fortawesome/fontawesome-free": "^6.5.1",
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
     "@mui/icons-material": "^5.15.5",
     "@mui/material": "^5.15.5",
     "axios": "^1.6.5",
+    "fontawesome": "^5.6.3",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.21.2"
   },
   "devDependencies": {

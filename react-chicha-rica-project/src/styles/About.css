@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.about__container {
+    color: #fff;
+    display: flex;
+    background-color: #242424;
+  }
+  
+  .about__figure {
+    width: 200%;
+    height: auto;
+    margin-right: 10px; /* Ajusta el margen derecho para controlar el espacio entre la imagen y el texto */
+  }
+  
+  .about__img {
+    margin-left: -2vw;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .about__article {
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+  }
+  
+  .about__title {
+    text-align: center;
+    font-size: 4em;
+    margin: 0;
+  }
+  
+  .about__description {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px;
+    font-size: 23px;
+    text-align: justify;
+  }
+  
+
+
