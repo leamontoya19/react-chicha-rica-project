@@ -1,16 +1,15 @@
 // Header.jsx
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Header.css';
-import { LogoHeaderR,LogoHeaderW } from '../assets/icons';
+import { LogoHeaderR } from '../assets/icons';
 import BotonToggle from './BotonToggle';
 import { SearchBar } from "./SearchBar";
 import { Suggestions } from "./Suggestions";
 
 import axios from "axios";
 
-const Header = () => {
+const Header = ({ abrirCarrito }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [results, setResults] = useState([]);
@@ -45,15 +44,10 @@ const Header = () => {
   return (
     <div className='main-header'>
       <header>
-        <div className="menu__icon">
-          <i className="fas fa-bars icon"></i>
-        </div>
-       {/* eliminé el checkbox que no lo necesitamos */}
         <label className="menu__icon" htmlFor="menu__btn"><span className="navicon"></span></label>
-
         <nav className='nav-bar'>
           <Link to="/"  className="logo-header-r">
-          <LogoHeaderR />  
+            <LogoHeaderR />  
           </Link>
           <ul>
             <SearchBar/>
@@ -62,10 +56,9 @@ const Header = () => {
             <li><Link to="/about">ABOUT</Link></li>
             <li><Link to="/gallery">GALERIA</Link></li>
             <li><Link to="/access">ACCESO</Link></li>
-            <button className='cart-header'>🛒</button>
+            <button className='cart-header' onClick={abrirCarrito}>🛒</button>
           </ul>
         </nav>
-       
       </header>
     </div>
   );

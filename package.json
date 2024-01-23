@@ -4,6 +4,8 @@
   "main": "index.js",
   "repository": "https://github.com/leamontoya19/react-chicha-rica-project.git",
   "author": "leamontoya19 <leamontoya19@gmail.com>",
-  "license": "MIT"
-  
+  "license": "MIT",
+  "dependencies": {
+    "react-icons": "^5.0.1"
+  }
 }
