@@ -3,10 +3,11 @@ import Header from './Header'
 
 import React, { useState } from 'react';
 //import '../styles/Wishlist.css'; // "./" es para buscar archivos en la misma carpeta y punto; y ""../" es para traerlo de otra carpeta"
-import '../styles/Wishlist.css'
+// import '../styles/Wishlist.css'
+import '../styles/wishlist.css'
 
 
-const Wishlist = () => {
+export const Wishlist = () => {
     const [wishlist, setWishlist] = useState([]); //crea una variable de estado llamada wishlist y una función para actualizar esa variable. Esto permite almacenar y modificar una lista de deseos en el componente
 
     const addToWishlist = (productId) => {
@@ -31,7 +32,7 @@ const Wishlist = () => {
                 ))}
             </ul>
             <div>
-                <p>Productos en tu e-commerce:</p>
+                <p>Productos de la e-commerce:</p>
                 {[1, 2, 3, 4, 5].map((productId) => (
                     <button key={productId} onClick={() => addToWishlist(productId)}>
                         Añadir producto {productId} a la Wishlist
@@ -61,7 +62,7 @@ const Wishlist = () => {
   );
 };*/
 
-export default Wishlist;
+//export default Wishlist;
 //El código finaliza con la etiqueta export default Wishlist;, lo que indica que este fragmento de código representa un componente llamado "Wishlist" que se puede exportar para su uso en otros lugares de la aplicación
 
 

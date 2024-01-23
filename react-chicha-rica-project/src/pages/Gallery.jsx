@@ -34,7 +34,7 @@ function Gallery() {
     const param = '/api.json/images';  // Reemplaza '/images' con la ruta correcta de tus datos
 
     fetchData(param);
-  }, [dependencias]);  // Empty dependency array means this effect runs once when the component mounts
+  }, []);  // Empty dependency array means this effect runs once when the component mounts
 
   return (
     <main className="gallerycontainer">
