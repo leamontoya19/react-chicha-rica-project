@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+import Header from '../components/Header';
+
 function Gallery() {
   const [images, setImages] = useState([]);
   const [load, setLoad] = useState(false);
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
 
-  axios.defaults.baseURL = '/api.json';
+  axios.defaults.baseURL = '/api.json/images';
 
   const fetchData = async (param) => {
     try {
@@ -32,7 +34,7 @@ function Gallery() {
     const param = '/api.json/images';  // Reemplaza '/images' con la ruta correcta de tus datos
 
     fetchData(param);
-  }, []);  // Empty dependency array means this effect runs once when the component mounts
+  }, [dependencias]);  // Empty dependency array means this effect runs once when the component mounts
 
   return (
     <main className="gallerycontainer">
