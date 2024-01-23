@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 //Estilos modal agradecimiento
 const customStyles = {
@@ -34,6 +35,10 @@ const Access = () => {
   const [errores, setErrores] = useState({});
   const [modalAbierto, setModalAbierto] = useState(false);
   const navigate = useNavigate();
+  const onChange = () => {
+    console.log('hola')
+  } 
+
 
   const nombreRegex = /^[A-Z][a-z]+$/;
 
@@ -131,6 +136,13 @@ const Access = () => {
             />
             {errores.contrasena && <span>{errores.contrasena}</span>}
           </label>
+        </div>
+        <div className='recaptcha'>
+          
+              <ReCAPTCHA
+                sitekey="6LdslFgpAAAAAEvhQ8tyiVMDXbgAHj-X8bgl30SF"
+                onChange={onChange}
+              />
         </div>
         <section className="botons">
           <div className="center">
