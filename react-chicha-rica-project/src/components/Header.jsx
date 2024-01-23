@@ -62,8 +62,10 @@ const Header = () => {
           <LogoHeaderR />  
           </Link>
           <ul>
+           
             <SearchBar/>
             <Suggestions/>
+            <BurgerButton />
             <BotonToggle/>
             <li><Link to="/about">ABOUT</Link></li>
             <li><Link to="/gallery">GALERIA</Link></li>

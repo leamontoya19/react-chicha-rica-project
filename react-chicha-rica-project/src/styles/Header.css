@@ -69,3 +69,7 @@
   color: #f20519;
   font-weight: 800;
 }
+
+@media only screen and (max-width: 840px) {
+  
+}
