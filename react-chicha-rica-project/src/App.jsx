@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import About from './pages/About';
 import Gallery from './pages/Gallery';
 import Access from './pages/Access';
+import Login from './components/Login'
 import Home from './pages/Home';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/access" element={<Access />}/>
+        <Route path="/login" element={<Login />}/>
       </Routes>
       
       {/* <Thanks /> */}

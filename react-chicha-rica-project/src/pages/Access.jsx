@@ -7,6 +7,8 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import ReCAPTCHA from 'react-google-recaptcha';
 
+
+
 //Estilos modal agradecimiento
 const customStyles = {
   content: {
@@ -137,13 +139,16 @@ const Access = () => {
             {errores.contrasena && <span>{errores.contrasena}</span>}
           </label>
         </div>
-        <div className='recaptcha'>
-          
-              <ReCAPTCHA
-                sitekey="6LdslFgpAAAAAEvhQ8tyiVMDXbgAHj-X8bgl30SF"
-                onChange={onChange}
-              />
+                  
+        <div className="recaptcha">
+          <ReCAPTCHA
+              sitekey="6LdslFgpAAAAAEvhQ8tyiVMDXbgAHj-X8bgl30SF"
+              onChange={onChange}
+              className='captcha'
+              theme="dark"  // Añade esta línea para configurar el tema oscuro
+            />
         </div>
+          
         <section className="botons">
           <div className="center">
             <button className="button" type="submit">
@@ -168,8 +173,8 @@ const Access = () => {
         <div className='modal__thanks__text'>
           <h3>¡Muchas gracias por registrarte!</h3>
         </div>
-        <div className='button_gallery'>
-          <button className='button' onClick={redirectToGallery}>Galería</button>
+        <div className='div_button_gallery'>
+          <button className="button__gallery" onClick={redirectToGallery}>Galería</button>
         </div>
       </Modal>
     </section>

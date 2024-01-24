@@ -4,7 +4,7 @@
     background-color: transparent;
     width: 100vw;
     margin: auto;
-    
+    margin-top: 200px;
 }
 
 .formulario {
@@ -13,10 +13,12 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+
     color: white;
     background-color: #8c8c8c;
     border: 1px solid #474343;
-    margin-top: 5%;
+
+    margin-top: -10px;
     padding: 30px 40px 75px 40px;
     border-radius: 10px;
     height: auto;       
@@ -26,13 +28,14 @@
 }
 
 h4{
-    font-size: 30px;
+    font-size: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     flex-direction: column;
     color: #000000;
+    margin-top: -10px;
 }
 
 .form{
@@ -44,6 +47,7 @@ h4{
     padding: 30px;
     width: 300px;
     height: 70%; 
+    margin-top: -18px;
 }
 
 .form-group {
@@ -52,13 +56,13 @@ h4{
 }
 
 .control {
-    min-width: 15vw;
+    min-width: 20vw;
     height: 1rem;
     padding: 10px;
     border: 1px solid #ffffff;
     border-radius: 13px;
     text-align: center;
-    font-size: 17px;
+    font-size: 14px;
 
 }
 
@@ -73,13 +77,106 @@ span{
     color: #fff;
 }
 
+.recaptcha{
+    border: none;
+    color: red;
+    
+}
+
 .botons {
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
     gap: 0px;
+    min-width: 20vw;
+
     cursor: pointer;
+}
+
+.button {
+    margin-top: 10px;
+    min-width: 20vw;
+    font-family: 'raleway', Helvetica, sans-serif;
+    font-size: 17px;
+
+    background: #8c0303;
+    color: #d9d9d9;
+    padding: 0.7em 5.5em;
+    border: 2px solid #66da4300;
+    border-radius: 5em;
+
+    display: flex;
+    align-items: center;
+   
+    overflow: hidden;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+/*Modal agradecimiento*/
+.modal__thanks__text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal__thanks__text h3{
+    color: #0d0d0d;
+}
+
+.button_close_div{
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.button_close_icon{
+  font-weight: bold;
+  background-color: transparent;
+  color: #0d0d0d;
+}
+
+.button_close_icon:hover{
+    color: #8c0303;
+}
+
+.button_close_modal{
+    margin-top: -100px;
+    margin-right: -497px;
+}
+
+.div_button_gallery{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button__gallery{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 10px;
+    font-family: 'raleway', Helvetica, sans-serif;
+    font-size: 17px;
+    background: #8c0303;
+    color: #d9d9d9;
+    padding: 0.7em 5.5em;
+    display: flex;
+    align-items: center;
+    border: 2px solid #66da4300;
+    border-radius: 5em;
+    overflow: hidden;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.button__gallery:hover{
+    border: 2px solid #d9d9d9;
+    background: #000000;
+    color: #fff;
 }
 
 .button {
@@ -96,42 +193,14 @@ span{
     overflow: hidden;
     transition: all 0.2s;
     cursor: pointer;
-}
-
-/*Modal agradecimiento*/
-.modal__thanks__text{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-
-.button_close_div{
-    display: flex;
-    justify-content: flex-end;
-    cursor: pointer;
-}
-
-.button_close_icon{
-  font-weight: bold;
-  background-color: transparent;
-}
-
-.button_close_icon:hover{
-    color: #8c0303;
-}
-
-.button_close_modal{
-    margin-top: -100px;
-    margin-right: -497px;
-}
-
-.button_gallery{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+  }
+  
+   
+  .button:active {
+    border: 2px solid #66da4300;
+    background: #f20519;
+    color: black;
+  }
 
 
 /* Media query para pantallas más pequeñas */
@@ -176,33 +245,7 @@ img .logo-user{
     color: white;
 }
 
-.button {
-    margin-top: 10px;
-    font-family: 'raleway', Helvetica, sans-serif;
-    font-size: 17px;
-    background: #8c0303;
-    color: #d9d9d9;
-    padding: 0.7em 5.5em;
-    display: flex;
-    align-items: center;
-    border: 2px solid #66da4300;
-    border-radius: 5em;
-    overflow: hidden;
-    transition: all 0.2s;
-    cursor: pointer;
-  }
-  
-  .button:hover {
-    border: 2px solid #d9d9d9;
-    background: #5e0203;
-    color: #fff;
-  }
-  
-  .button:active {
-    border: 2px solid #66da4300;
-    background: #f20519;
-    color: black;
-  }
+
 
 .check-term{
     display: flex;
