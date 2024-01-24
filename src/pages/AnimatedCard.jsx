@@ -17,7 +17,7 @@ const AnimatedCard = () => {
           <p className="card-title">FOTOS EN GRAN FORMATO</p>
           <p className="card-description">Transforma tus espacios con la elegancia de la fotografía de <strong>Miguel Meixoeiro</strong>. <br /><br />Descubre nuestras impresiones en gran formato y lleva el arte a tu hogar hoy.</p>
           <div className="center no-decoration">
-            <a  className="button-banner"><Link to="/gallery">VISITA NUESTRA GALERÍA</Link></a>
+            <a  className="link-banner"><Link to="/gallery">VISITA NUESTRA GALERÍA</Link></a>
             
           </div>
         </div>

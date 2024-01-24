@@ -175,12 +175,12 @@ const Access = () => {
           
         <section className="botons">
           <div className="center">
-            <button className="button" type="submit">
+            <button className="button__gallery" type="submit">
               Registro
             </button>
           </div>
           <div className="center">
-            <button className="button" onClick={redirectToLogin}>Iniciar sesión</button>
+            <button className="button__gallery" onClick={redirectToLogin}>Iniciar sesión</button>
           </div>
         </section>
       </form>

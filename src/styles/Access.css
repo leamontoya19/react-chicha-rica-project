@@ -45,9 +45,9 @@ h4{
     background-image: linear-gradient(45deg, #262626, #0d0d0d);
     border-radius: 2.5em;
     padding: 30px;
-    width: 300px;
+    width: auto;
     height: 70%; 
-    margin-top: -18px;
+    margin-top: -16px;
 }
 
 .form-group {
@@ -77,9 +77,17 @@ span{
     color: #fff;
 }
 
+.terms-link{
+    cursor: pointer;
+}
+
+.terms-link:hover{
+    color: #f02f2f;
+}
+
 .recaptcha{
     border: none;
-    color: red;
+    color: #fff;
     
 }
 
@@ -92,6 +100,12 @@ span{
     min-width: 20vw;
 
     cursor: pointer;
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .button {
@@ -157,6 +171,8 @@ span{
     display: flex;
     align-items: center;
     justify-content: center;
+
+    min-width: 50%;
 
     margin-top: 10px;
     font-family: 'raleway', Helvetica, sans-serif;

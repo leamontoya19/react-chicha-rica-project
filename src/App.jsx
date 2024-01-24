@@ -32,7 +32,7 @@ function App() {
           <Route path="/finish" element={<Finish />} />  {/* Agrega la ruta de la página de finalización */}
         </Routes>
 
-        <CartDisplay />
+        
       </CartProvider>
       <Footer />
     </Router>
