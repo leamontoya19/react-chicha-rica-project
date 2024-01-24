@@ -55,7 +55,10 @@ const Header = () => {
   const hideCart = () => {
     setCartVisible(false);
   };
-
+  const closeCart = () => {
+    setCartVisible(false);
+  };
+  
   return (
     <div className="main-header">
       <header>
@@ -97,6 +100,7 @@ const Header = () => {
         </nav>
 
         {cartVisible && <CartDisplay hideCart={hideCart} />} {/* Renderiza CartDisplay solo cuando cartVisible es true */}
+        <button onClick={closeCart}>X</button>
       </header>
     </div>
   );

@@ -12,7 +12,7 @@ const CartDisplay = () => {
 
   return (
     <div className="cart-display">
-      <h2>Shopping Cart</h2>
+      
       {cartItems.length > 0 ? (
         <>
           <ul>

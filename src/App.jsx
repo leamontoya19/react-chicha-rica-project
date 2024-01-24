@@ -1,4 +1,5 @@
 // App.jsx
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import './styles/Contact.css';
@@ -8,28 +9,26 @@ import About from './pages/About';
 import Gallery from './pages/Gallery';
 import Access from './pages/Access';
 import Home from './pages/Home';
-import { CartProvider } from './CartContext';  // Importa el CartProvider
-import CartDisplay from './components/CartDisplay';  // Importa el CartDisplay
-// import Thanks from './pages/Thanks';  // Prueba Thanks Page
+import { CartProvider } from './CartContext';
+import CartDisplay from './components/CartDisplay';
+import Finish from './pages/Finish';  // Importa la nueva página de finalización
 
 function App() {
   return (
     <Router>
-      <CartProvider>  {/* Envuelve tu aplicación con el CartProvider */}
+      <CartProvider>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/access" element={<Access />} />
+          <Route path="/finish" element={<Finish />} />  {/* Agrega la ruta de la página de finalización */}
         </Routes>
 
-        {/* <Thanks /> */}
-
-        <CartDisplay />  {/* Muestra el carrito en la ubicación deseada */}
-        </CartProvider>
-        <Footer />
-      
+        <CartDisplay />
+      </CartProvider>
+      <Footer />
     </Router>
   );
 }
