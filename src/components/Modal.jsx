@@ -1,4 +1,3 @@
-// Modal.js
 import React, { useState } from 'react';
 import { useCart } from '../CartContext';
 import '../styles/Modal.css';
@@ -6,6 +5,7 @@ import '../styles/Modal.css';
 const Modal = ({ image, Close }) => {
   const [modalVisible, setModalVisible] = useState(true);
   const [cartVisible, setCartVisible] = useState(false);
+  const [selectedPrice, setSelectedPrice] = useState('priceSmall'); // Nuevo estado
 
   const { addToCart, cartItems, clearCart } = useCart();
 
@@ -15,7 +15,7 @@ const Modal = ({ image, Close }) => {
   };
 
   const handleAddToCart = () => {
-    addToCart({ title: image.title, price: image.price });
+    addToCart({ title: image.title, price: image[selectedPrice] }); // Usar el precio seleccionado
   };
 
   const openCart = () => {
@@ -26,9 +26,13 @@ const Modal = ({ image, Close }) => {
     setCartVisible(false);
   };
 
+  const handlePriceChange = (event) => {
+    setSelectedPrice(event.target.value);
+  };
+
   const calculateTotal = () => {
     const total = cartItems.reduce((acc, item) => acc + item.price, 0);
-    return `${total}€` ;
+    return `${total}€`;
   };
 
   return (
@@ -39,14 +43,21 @@ const Modal = ({ image, Close }) => {
         </span>
         <img src={`img/${image.url}`} alt={image.title} style={{ width: '100%' }} />
         <h3>{image.title}</h3>
-        <p>Price: {image.price}€</p>
+        <p>Price: {image[selectedPrice]}€</p> {/* Usar el precio seleccionado */}
         <button className='penta'>⛧</button>
         <button className='cart' onClick={handleAddToCart}>
-          🛒 Add to Cart
+          +
         </button>
         <button className='cart' onClick={openCart}>
-          View Cart
+          🛒 
         </button>
+
+        {/* Nuevo desplegable para seleccionar el precio */}
+        <select value={selectedPrice} onChange={handlePriceChange}>
+          <option value="priceSmall">Price Small</option>
+          <option value="priceMedium">Price Medium</option>
+          <option value="priceLarge">Price Large</option>
+        </select>
 
         {cartVisible && (
           <div className="cart-content">
@@ -61,12 +72,12 @@ const Modal = ({ image, Close }) => {
                   ))}
                 </ul>
                 <p>Total: {calculateTotal()}</p>
-                <button onClick={clearCart}>Clear Cart</button>
+                <button onClick={clearCart}>Clear</button>
               </>
             ) : (
               <p>Your cart is empty.</p>
             )}
-            <button onClick={closeCart}>Close Cart</button>
+            <button onClick={closeCart}>X</button>
           </div>
         )}
       </div>
