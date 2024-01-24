@@ -1,10 +1,12 @@
+// Gallery.js
 import React, { useEffect, useState, useRef, memo } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import _debounce from "lodash/debounce";
 import GalleryFilter from "../components/GalleryFilter";
-import Modal from "../components/Modal";
 import "../styles/Gallery.css";
+import Modal from "../components/Modal";
+import _debounce from "lodash/debounce";
+
 
 const Image = memo(({ image, openModal }) => (
   <div className={image.keyword} onClick={() => openModal(image)}>
@@ -73,7 +75,9 @@ function Gallery() {
         const dataApi = response.data;
         const filteredImages = dataApi.data.filter((image) => {
           const hasCategory = !filter || image.keyword.includes(filter);
-          const matchesSearch = !searchTerm || image.title.toLowerCase().includes(searchTerm.toLowerCase());
+          const matchesSearch =
+            !searchTerm ||
+            image.title.toLowerCase().includes(searchTerm.toLowerCase());
           return hasCategory && matchesSearch;
         });
         setImages(filteredImages);
@@ -101,25 +105,52 @@ function Gallery() {
   useEffect(() => {
     const fetchSuggestions = async () => {
       try {
-        const response = await axios.get(`/api/suggestions?searchTerm=${searchTerm}`);
+        const response = await axios.get(
+          `/api/suggestions?searchTerm=${searchTerm}`
+        );
         setSuggestions(response.data);
       } catch (error) {
         console.error("Error al obtener sugerencias:", error);
       }
     };
-  
+
     fetchSuggestions();
   }, [searchTerm]);
 
+  const handleMouseMove = (event) => {
+    const mouseX = event.clientX - containerRect.left - containerRect.width / 2;
+    const mouseY = event.clientY - containerRect.top - containerRect.height / 5;
+    const rotateX = (mouseY / containerRect.height) * 3;
+    const rotateY = (mouseX / containerRect.width) * 6;
+
+    const imgContainers = document.querySelectorAll(".img-container");
+    imgContainers.forEach((imgContainer) => {
+      imgContainer.style.transform = `perspective(1000px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+  };
+
+   // const handleSuggestionClick = (selectedSuggestion) => {
+  //   setSearchTerm(selectedSuggestion.title);
+  //   // Realiza acciones adicionales si es necesario
+  // };
+
   return (
-    <div className="gallery-container" ref={galleryContainerRef} onMouseMove={debouncedHandleMouseMove} onMouseLeave={resetRotation}>
+    <>
+    <div className="gallery-container" onMouseMove={handleMouseMove} onMouseLeave={resetRotation}>
       <GalleryFilter onFilterChange={handleFilterChange} />
       <div className="pictures-container">
         {Array.isArray(images) &&
-          images.map((image) => <Image key={image.id} image={image} openModal={openModal} />)}
+          images.map((image) => (
+            <div className={`${image.keyword}`} key={image.id} onClick={() => openModal(image)}>
+              <div className="img-container">
+                <img src={`img/${image.url}`} alt={image.title} />
+              </div>
+            </div>
+          ))}
       </div>
       {modal && selectedImage && <Modal image={selectedImage} closeModal={closeModal} />}
     </div>
+    </>
   );
 }
 
