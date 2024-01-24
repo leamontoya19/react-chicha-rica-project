@@ -3,11 +3,11 @@ import './App.css';
 import './styles/Contact.css'
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Home from './pages/Home';
 import About from './pages/About';
 import Gallery from './pages/Gallery';
 import Access from './pages/Access';
-import Home from './pages/Home';
-import Thanks from './pages/Thanks'; //prueba Thanks Page
+
 
 function App() {
   return (
@@ -19,8 +19,7 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/access" element={<Access />}/>
       </Routes>
-      
-      {/* <Thanks /> */}
+    
     
 
       <Footer />
