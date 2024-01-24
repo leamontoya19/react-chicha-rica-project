@@ -1,21 +1,22 @@
-// Modal.js
 import React, { useState } from 'react';
 import { useCart } from '../CartContext';
+import { Link ,useNavigate } from 'react-router-dom';
 import '../styles/Modal.css';
 
 const Modal = ({ image, Close }) => {
   const [modalVisible, setModalVisible] = useState(true);
   const [cartVisible, setCartVisible] = useState(false);
-
+  const [selectedPrice, setSelectedPrice] = useState('priceSmall'); // Nuevo estado
+  const navigate = useNavigate();
   const { addToCart, cartItems, clearCart } = useCart();
 
-  const closeModal = () => {
+  const closeModal = () =>{
     setModalVisible(false);
     Close();
   };
 
   const handleAddToCart = () => {
-    addToCart({ title: image.title, price: image.price });
+    addToCart({ title: image.title, price: image[selectedPrice] }); // Usar el precio seleccionado
   };
 
   const openCart = () => {
@@ -26,9 +27,18 @@ const Modal = ({ image, Close }) => {
     setCartVisible(false);
   };
 
+  const handlePriceChange = (event) => {
+    setSelectedPrice(event.target.value);
+  };
+
   const calculateTotal = () => {
     const total = cartItems.reduce((acc, item) => acc + item.price, 0);
-    return `${total}€` ;
+    return `${total}€`;
+  };
+
+  const finishPurchase = () => {
+    // Realiza cualquier acción antes de redirigir, como enviar datos al servidor
+    navigate('/finish');  // Usa navigate en lugar de push para la versión 6
   };
 
   return (
@@ -38,14 +48,21 @@ const Modal = ({ image, Close }) => {
           &times;
         </span>
         <img src={`img/${image.url}`} alt={image.title} style={{ width: '100%' }} />
-        <h3>{image.title}</h3>
-        <p>Price: {image.price}€</p>
+        <div className='Data'>
+          <h3>{image.title}</h3>
+          <p>Price: {image[selectedPrice]}€</p> {/* Usar el precio seleccionado */}
+          <select className='PriceSelector' value={selectedPrice} onChange={handlePriceChange}>
+            <option value="priceSmall">Price Small</option>
+            <option value="priceMedium">Price Medium</option>
+            <option value="priceLarge">Price Large</option>
+          </select>
+        </div>
         <button className='penta'>⛧</button>
         <button className='cart' onClick={handleAddToCart}>
-          🛒 Add to Cart
+          +
         </button>
         <button className='cart' onClick={openCart}>
-          View Cart
+          🛒 
         </button>
 
         {cartVisible && (
@@ -61,12 +78,13 @@ const Modal = ({ image, Close }) => {
                   ))}
                 </ul>
                 <p>Total: {calculateTotal()}</p>
-                <button onClick={clearCart}>Clear Cart</button>
+                <button onClick={clearCart}>Clear</button>
+                <button onClick={finishPurchase}>Finalizar</button>
               </>
             ) : (
               <p>Your cart is empty.</p>
             )}
-            <button onClick={closeCart}>Close Cart</button>
+            <button onClick={closeCart}>X</button>
           </div>
         )}
       </div>
