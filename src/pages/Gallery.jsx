@@ -35,18 +35,6 @@ function Gallery() {
     }
   };
 
-  const debouncedHandleMouseMove = _debounce((event) => {
-    const mouseX = event.clientX - containerRect.left - containerRect.width / 5;
-    const mouseY = event.clientY - containerRect.top - containerRect.height / 4;
-    const rotateX = (mouseY / containerRect.height) * 6;
-    const rotateY = (mouseX / containerRect.width) * 12;
-
-    const imgContainers = document.querySelectorAll(".img-container");
-    imgContainers.forEach((imgContainer) => {
-      imgContainer.style.transform = `perspective(1000px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
-    });
-  }, 16);
-
   const resetRotation = () => {
     const imgContainers = document.querySelectorAll(".img-container");
     imgContainers.forEach((imgContainer) => {
@@ -73,7 +61,9 @@ function Gallery() {
         const dataApi = response.data;
         const filteredImages = dataApi.data.filter((image) => {
           const hasCategory = !filter || image.keyword.includes(filter);
-          const matchesSearch = !searchTerm || image.title.toLowerCase().includes(searchTerm.toLowerCase());
+          const matchesSearch =
+            !searchTerm ||
+            image.title.toLowerCase().includes(searchTerm.toLowerCase());
           return hasCategory && matchesSearch;
         });
         setImages(filteredImages);
@@ -85,41 +75,70 @@ function Gallery() {
     fetchData();
 
     const galleryContainer = galleryContainerRef.current;
-    setContainerRect(galleryContainer.getBoundingClientRect());
 
-    const handleResize = () => {
+    // Verificación para asegurarse de que galleryContainer no sea null
+    if (galleryContainer) {
       setContainerRect(galleryContainer.getBoundingClientRect());
-    };
 
-    window.addEventListener("resize", handleResize);
+      const handleResize = () => {
+        setContainerRect(galleryContainer.getBoundingClientRect());
+      };
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [category, filter, searchTerm]);
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, [category, filter, searchTerm, galleryContainerRef]);
 
   useEffect(() => {
     const fetchSuggestions = async () => {
       try {
-        const response = await axios.get(`/api/suggestions?searchTerm=${searchTerm}`);
+        const response = await axios.get(
+          `/api/suggestions?searchTerm=${searchTerm}`
+        );
         setSuggestions(response.data);
       } catch (error) {
         console.error("Error al obtener sugerencias:", error);
       }
     };
-  
+
     fetchSuggestions();
   }, [searchTerm]);
 
+  const handleMouseMove = (event) => {
+    const mouseX = event.clientX - containerRect.left - containerRect.width / 2;
+    const mouseY = event.clientY - containerRect.top - containerRect.height / 5;
+    const rotateX = (mouseY / containerRect.height) * 3;
+    const rotateY = (mouseX / containerRect.width) * 6;
+
+    const imgContainers = document.querySelectorAll(".img-container");
+    imgContainers.forEach((imgContainer) => {
+      imgContainer.style.transform = `perspective(1000px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+  };
+
   return (
-    <div className="gallery-container" ref={galleryContainerRef} onMouseMove={debouncedHandleMouseMove} onMouseLeave={resetRotation}>
-      <GalleryFilter onFilterChange={handleFilterChange} />
-      <div className="pictures-container">
-        {Array.isArray(images) &&
-          images.map((image) => <Image key={image.id} image={image} openModal={openModal} />)}
+    <>
+      <div
+        className="gallery-container"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={resetRotation}
+        ref={galleryContainerRef}
+      >
+        <GalleryFilter onFilterChange={handleFilterChange} />
+        <div className="pictures-container">
+          {Array.isArray(images) &&
+            images.map((image) => (
+              <Image key={image.id} image={image} openModal={openModal} />
+            ))}
+        </div>
+        {modal && selectedImage && (
+          <Modal image={selectedImage} onClose={closeModal} />
+        )}
       </div>
-      {modal && selectedImage && <Modal image={selectedImage} closeModal={closeModal} />}
-    </div>
+    </>
   );
 }
 
