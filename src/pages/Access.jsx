@@ -36,9 +36,14 @@ const Access = () => {
   const [contrasena, setContrasena] = useState('');
   const [errores, setErrores] = useState({});
   const [modalAbierto, setModalAbierto] = useState(false);
+  const [recaptchaCompleted, setRecaptchaCompleted] = useState(false); //obligatorio recaptcha
+
+  
   const navigate = useNavigate();
+  
+  
   const onChange = () => {
-    console.log('hola')
+    setRecaptchaCompleted(true);
   } 
 
 
@@ -62,6 +67,10 @@ const Access = () => {
 
     if (contrasena.length < 6) {
       erroresValidacion.contrasena = 'La contraseña debe tener al menos 6 caracteres';
+    }
+
+    if(!recaptchaCompleted) {
+      erroresValidacion.recaptcha = 'Completa el reCAPTCHA antes de registrarte.';
     }
 
     if (Object.keys(erroresValidacion).length > 0) {
@@ -88,6 +97,10 @@ const Access = () => {
   const redirectToLogin = () => {
     navigate('/login');
   };
+
+  const redirectToTerms = () => {
+    navigate('/terms')
+  }
 
   return (
     <main className='formulario-container'>
@@ -139,14 +152,25 @@ const Access = () => {
             {errores.contrasena && <span>{errores.contrasena}</span>}
           </label>
         </div>
+
+        <div className='form-group'>
+          <label>
+            <input 
+            type='checkbox'
+            required />
+            Acepto los <a className='terms-link' onClick={redirectToTerms}>términos y condiciones</a>
+          </label>
+        </div>
                   
         <div className="recaptcha">
           <ReCAPTCHA
               sitekey="6LdslFgpAAAAAEvhQ8tyiVMDXbgAHj-X8bgl30SF"
               onChange={onChange}
               className='captcha'
-              theme="dark"  // Añade esta línea para configurar el tema oscuro
+              theme="dark"  // tema oscuro
+              required //campo obligatorio
             />
+            {errores.recaptcha && <span>{errores.recaptcha}</span>}
         </div>
           
         <section className="botons">
@@ -160,6 +184,7 @@ const Access = () => {
           </div>
         </section>
       </form>
+
       <Modal 
         isOpen={modalAbierto} 
         onRequestClose={closeModal}
