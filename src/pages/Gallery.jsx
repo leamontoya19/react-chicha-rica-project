@@ -1,23 +1,14 @@
-import React, { useEffect, useState, useRef, memo } from "react";
+
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import _debounce from "lodash/debounce";
 import GalleryFilter from "../components/GalleryFilter";
-import Modal from "../components/Modal";
 import "../styles/Gallery.css";
-
-const Image = memo(({ image, openModal }) => (
-  <div className={image.keyword} onClick={() => openModal(image)}>
-    <div className="img-container">
-      <img src={`img/${image.url}`} alt={image.title} />
-    </div>
-  </div>
-));
+import Modal from "../components/Modal";
 
 function Gallery() {
   const navigate = useNavigate();
   const { category } = useParams();
-  const galleryContainerRef = useRef(null);
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [modal, setModal] = useState(false);
@@ -33,25 +24,6 @@ function Gallery() {
     } else {
       navigate(`/gallery/${newCategory}`);
     }
-  };
-
-  const resetRotation = () => {
-    const imgContainers = document.querySelectorAll(".img-container");
-    imgContainers.forEach((imgContainer) => {
-      imgContainer.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
-    });
-  };
-
-  const openModal = (image) => {
-    setSelectedImage(image);
-    setModal(true);
-    resetRotation();
-  };
-
-  const closeModal = () => {
-    setSelectedImage(null);
-    setModal(false);
-    resetRotation();
   };
 
   useEffect(() => {
@@ -74,11 +46,8 @@ function Gallery() {
 
     fetchData();
 
-    const galleryContainer = galleryContainerRef.current;
-
-    // Verificación para asegurarse de que galleryContainer no sea null
-    if (galleryContainer) {
-      setContainerRect(galleryContainer.getBoundingClientRect());
+    const galleryContainer = document.querySelector(".gallery-container");
+    setContainerRect(galleryContainer.getBoundingClientRect());
 
       const handleResize = () => {
         setContainerRect(galleryContainer.getBoundingClientRect());

@@ -93,12 +93,12 @@
   text-align: center;
 }
 
-.button-banner {
+.link-banner{
+  color: #fff;
   margin-top: 10px;
   font-family: "raleway", Helvetica, sans-serif;
   font-size: 17px;
   background: #8c0303;
-  color: #d9d9d9;
   padding: 0.7em 5.5em;
   display: flex;
   align-items: center;
@@ -108,6 +108,38 @@
   transition: all 0.2s;
   cursor: pointer;
 }
+
+.link-banner a{
+  color: #fff;
+}
+
+.link-banner a:hover{
+  color: #fff;
+}
+
+.link-banner:hover{
+  border: 2px solid #d9d9d9;
+  background: #000000;
+  color: #fff;
+}
+
+.button-banner {
+  margin-top: 10px;
+  font-family: "raleway", Helvetica, sans-serif;
+  font-size: 17px;
+  background: #8c0303;
+  color: #fff;
+  padding: 0.7em 5.5em;
+  display: flex;
+  align-items: center;
+  border: 2px solid #66da4300;
+  border-radius: 5em;
+  overflow: hidden;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+
 .button-banner:hover {
   border: 2px solid #d9d9d9;
   background: #00000000;

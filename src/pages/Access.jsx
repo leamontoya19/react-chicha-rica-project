@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../App.css';
 import '../styles/Access.css';
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import ReCAPTCHA from 'react-google-recaptcha';
+
 
 
 //Estilos modal agradecimiento
@@ -34,7 +36,16 @@ const Access = () => {
   const [contrasena, setContrasena] = useState('');
   const [errores, setErrores] = useState({});
   const [modalAbierto, setModalAbierto] = useState(false);
+  const [recaptchaCompleted, setRecaptchaCompleted] = useState(false); //obligatorio recaptcha
+
+  
   const navigate = useNavigate();
+  
+  
+  const onChange = () => {
+    setRecaptchaCompleted(true);
+  } 
+
 
   const nombreRegex = /^[A-Z][a-z]+$/;
 
@@ -56,6 +67,10 @@ const Access = () => {
 
     if (contrasena.length < 6) {
       erroresValidacion.contrasena = 'La contraseña debe tener al menos 6 caracteres';
+    }
+
+    if(!recaptchaCompleted) {
+      erroresValidacion.recaptcha = 'Completa el reCAPTCHA antes de registrarte.';
     }
 
     if (Object.keys(erroresValidacion).length > 0) {
@@ -82,6 +97,10 @@ const Access = () => {
   const redirectToLogin = () => {
     navigate('/login');
   };
+
+  const redirectToTerms = () => {
+    navigate('/terms')
+  }
 
   return (
     <main className='formulario-container'>
@@ -133,17 +152,39 @@ const Access = () => {
             {errores.contrasena && <span>{errores.contrasena}</span>}
           </label>
         </div>
+
+        <div className='form-group'>
+          <label>
+            <input 
+            type='checkbox'
+            required />
+            Acepto los <a className='terms-link' onClick={redirectToTerms}>términos y condiciones</a>
+          </label>
+        </div>
+                  
+        <div className="recaptcha">
+          <ReCAPTCHA
+              sitekey="6LdslFgpAAAAAEvhQ8tyiVMDXbgAHj-X8bgl30SF"
+              onChange={onChange}
+              className='captcha'
+              theme="dark"  // tema oscuro
+              required //campo obligatorio
+            />
+            {errores.recaptcha && <span>{errores.recaptcha}</span>}
+        </div>
+          
         <section className="botons">
           <div className="center">
-            <button className="button" type="submit">
+            <button className="button__gallery" type="submit">
               Registro
             </button>
           </div>
           <div className="center">
-            <button className="button" onClick={redirectToLogin}>Iniciar sesión</button>
+            <button className="button__gallery" onClick={redirectToLogin}>Iniciar sesión</button>
           </div>
         </section>
       </form>
+
       <Modal 
         isOpen={modalAbierto} 
         onRequestClose={closeModal}
@@ -157,8 +198,8 @@ const Access = () => {
         <div className='modal__thanks__text'>
           <h3>¡Muchas gracias por registrarte!</h3>
         </div>
-        <div className='button_gallery'>
-          <button className='button' onClick={redirectToGallery}>Galería</button>
+        <div className='div_button_gallery'>
+          <button className="button__gallery" onClick={redirectToGallery}>Galería</button>
         </div>
       </Modal>
     </section>
