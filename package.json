@@ -21,18 +21,15 @@
     "@mui/icons-material": "^5.15.5",
     "@mui/material": "^5.15.5",
     "axios": "^1.6.5",
-    "history": "^5.3.0",
     "fontawesome": "^5.6.3",
+    "history": "^5.3.0",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-google-recaptcha": "^3.1.0",
     "react-icons": "^5.0.1",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.21.2"
-<<<<<<< HEAD
-    
-=======
->>>>>>> 1766f0a710c3c1c13005ca098ab8983d4fbb9534
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

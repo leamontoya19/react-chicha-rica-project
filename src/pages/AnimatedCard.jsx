@@ -6,7 +6,7 @@ import '../styles/AnimatedCard.css'
 const AnimatedCard = () => {
   return (
     <>
-    <section className='main__cta'>
+    <section className='main-cta'>
       <div className="card">
         {/* <img src="./img/foto2.jpg" alt="letrero de neon en un muro" className="imgcta" />
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

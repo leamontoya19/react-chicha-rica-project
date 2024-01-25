@@ -4,17 +4,17 @@
   top: 0px;
 }
 
-.nav-bar{
+header {
   width: max-content;
   display: flex;
-  justify-content:space-between; /* revisar*/
+  /* justify-content:space-between; revisar */
   align-items: flex-start;;
-  padding: 1rem;
-  column-gap: 410px;
+  padding: 5px;
+  column-gap: 165px;
 }
 
 .logo-header-r{
-  height: 160px;
+  height: 140px;
 }
 
 .toggle-logo {
@@ -48,7 +48,8 @@
     color: #fff;
     font-weight: 300;
   }
-  
+
+
 .main-header li a:hover {
   color: #f20519;
   font-weight: 800;

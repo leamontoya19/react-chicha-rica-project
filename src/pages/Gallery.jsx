@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
@@ -49,17 +48,16 @@ function Gallery() {
     const galleryContainer = document.querySelector(".gallery-container");
     setContainerRect(galleryContainer.getBoundingClientRect());
 
-      const handleResize = () => {
-        setContainerRect(galleryContainer.getBoundingClientRect());
-      };
+    const handleResize = () => {
+      setContainerRect(galleryContainer.getBoundingClientRect());
+    };
 
-      window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize);
 
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }
-  }, [category, filter, searchTerm, galleryContainerRef]);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [category, filter, searchTerm]);
 
   useEffect(() => {
     const fetchSuggestions = async () => {
@@ -88,23 +86,50 @@ function Gallery() {
     });
   };
 
+  const resetRotation = () => {
+    const imgContainers = document.querySelectorAll(".img-container");
+    imgContainers.forEach((imgContainer) => {
+      imgContainer.style.transform =
+        "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+    });
+  };
+
+  const openModal = (image) => {
+    setSelectedImage(image);
+    setModal(true);
+    resetRotation();
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+    setModal(false);
+    resetRotation();
+  };
+
   return (
     <>
       <div
         className="gallery-container"
         onMouseMove={handleMouseMove}
         onMouseLeave={resetRotation}
-        ref={galleryContainerRef}
       >
         <GalleryFilter onFilterChange={handleFilterChange} />
         <div className="pictures-container">
           {Array.isArray(images) &&
             images.map((image) => (
-              <Image key={image.id} image={image} openModal={openModal} />
+              <div
+                className={`${image.keyword}`}
+                key={image.id}
+                onClick={() => openModal(image)}
+              >
+                <div className="img-container">
+                  <img src={`img/${image.url}`} alt={image.title} />
+                </div>
+              </div>
             ))}
         </div>
         {modal && selectedImage && (
-          <Modal image={selectedImage} onClose={closeModal} />
+          <Modal image={selectedImage} Close={closeModal} />
         )}
       </div>
     </>

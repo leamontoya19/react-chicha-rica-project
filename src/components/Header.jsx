@@ -3,13 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Header.css';
 import { LogoHeaderR } from '../assets/icons';
-import BotonToggle from './BotonToggle';
+import axios from 'axios';
+import Navbar from './Navbar';
 import { SearchBar } from './SearchBar';
 import { Suggestions } from './Suggestions';
 import { useCart } from '../CartContext';  // Importa useCart
 import CartDisplay from './CartDisplay';  // Importa CartDisplay
 
-import axios from 'axios';
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -62,44 +62,35 @@ const Header = () => {
   return (
     <div className="main-header">
       <header>
-        <div className="menu__icon">
+        {/* <div className="menu__icon">
           <i className="fas fa-bars icon"></i>
         </div>
         <label className="menu__icon" htmlFor="menu__btn">
           <span className="navicon"></span>
-        </label>
-
-        <nav className="nav-bar">
-          <Link to="/" className="logo-header-r">
+        </label> */}
+        {/* separando los elementos del navbar */}
+        <Link to="/" className="logo-header-r">
             <LogoHeaderR />
-          </Link>
-          <ul>
-            <SearchBar
-              onChange={handleSearchChange}
-              onClickOutside={handleSearchClickOutside}
-            />
-            <Suggestions
-              suggestions={suggestions}
-              onClick={handleSuggestionClick}
-            />
-            <BotonToggle />
-            <li>
-              <Link to="/about">ABOUT</Link>
-            </li>
-            <li>
-              <Link to="/gallery">GALERIA</Link>
-            </li>
-            <li>
-              <Link to="/access">ACCESO</Link>
-            </li>
-            <button className="cart-header" onClick={showCart}>
-              🛒 {cartItems.length > 0 && `(${cartItems.length})`}
-            </button>
-          </ul>
-        </nav>
+        </Link>
+        <div className='search-container'>
+          <SearchBar
+          onChange={handleSearchChange}
+          onClickOutside={handleSearchClickOutside}
+          />
+          <Suggestions
+          suggestions={suggestions}
+          onClick={handleSuggestionClick}
+          />
+        </div>
 
+        <Navbar />
+
+        <button className="cart-header" onClick={showCart}>
+          🛒 {cartItems.length > 0 && `(${cartItems.length})`}
+        </button>
         {cartVisible && <CartDisplay hideCart={hideCart} />} {/* Renderiza CartDisplay solo cuando cartVisible es true */}
         <button onClick={closeCart}>X</button>
+
       </header>
     </div>
   );
