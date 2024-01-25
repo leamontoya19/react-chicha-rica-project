@@ -6,7 +6,7 @@ import Gallery from './pages/Gallery';
 import Access from './pages/Access';
 import Login from './components/Login'
 import Terms from './pages/Terms'
-import ArrowButtons from './components/ArrowButtons';
+
 
 const AppRouter = () => {
   return (

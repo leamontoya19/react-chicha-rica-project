@@ -10,13 +10,16 @@
 }
 
 .modal-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color:grey;
-  padding: 20px;
-  text-align: center;
+  width: 50%;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.8); /* Fondo negro oscuro con opacidad */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Sombra ligera */
+  padding: 20px; /* Ajusta el relleno según sea necesario */
+  border-radius: 8px; /* Ajusta el radio de borde según sea necesario */
+  z-index: 2; /* Asegura que el contenido del modal esté sobre el sombreado */
+  color: white;
+
+
 }
 
 .pagination{
@@ -24,6 +27,10 @@
   flex-direction: column;
   align-items: center;
   
+}
+
+.arrows{
+  display: flex;
 }
 
 .close {
@@ -43,12 +50,17 @@
   text-align: center;
 }
 .Data{
-  
-  
-  display: flex;
+    display: flex;
     flex-wrap: nowrap;
     align-content: center;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+}
+
+.butons__modal{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  flex-direction: row;
 }

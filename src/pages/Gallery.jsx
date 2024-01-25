@@ -6,6 +6,7 @@ import GalleryFilter from "../components/GalleryFilter";
 import "../styles/Gallery.css";
 import Modal from "../components/Modal";
 
+
 function Gallery() {
   const navigate = useNavigate();
   const { category } = useParams();
@@ -18,6 +19,9 @@ function Gallery() {
   const [suggestions, setSuggestions] = useState([]);
   const [galleryImages, setGalleryImages] = useState([]);
 
+  const [currentImageIndex, setCurrentImageIndex] = useState(null);
+
+  
   const handleFilterChange = (newCategory) => {
     setFilter(newCategory);
     if (newCategory === "") {
@@ -112,6 +116,31 @@ function Gallery() {
     resetRotation();
   };
 
+  useEffect(() => {
+    if (modal && selectedImage) {
+      const currentIndex = galleryImages.findIndex(
+        (image) => image.id === selectedImage.id
+      );
+      setCurrentImageIndex(currentIndex);
+    }
+  }, [modal, selectedImage, galleryImages]);
+
+  const nextImage = () => {
+    if (currentImageIndex !== null && currentImageIndex < galleryImages.length - 1) {
+      const nextIndex = currentImageIndex + 1;
+      setSelectedImage(galleryImages[nextIndex]);
+      setCurrentImageIndex(nextIndex);
+    }
+  }
+  const prevImage = () => {
+    if (currentImageIndex !== null && currentImageIndex > 0) {
+      const prevIndex = currentImageIndex - 1;
+      setSelectedImage(galleryImages[prevIndex]);
+      setCurrentImageIndex(prevIndex);
+    }
+  };
+
+
   // console.log('galleryImages:', galleryImages)
   console.log('selectedImage:', selectedImage);
 
@@ -138,7 +167,10 @@ function Gallery() {
             ))}
         </div>
         {modal && selectedImage && (
-           <Modal selectedImage={selectedImage} Close={closeModal} />           
+           <Modal selectedImage={selectedImage} 
+              Close={closeModal} 
+              nextImage={nextImage}
+              prevImage={prevImage}/>           
 
         )}
       </div>
