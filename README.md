@@ -21,8 +21,8 @@
 2. Instala las dependencias con Yarn: 
    
 ```bash  
- cd chicha-rica
-yarn install
+ cd react-project
+  yarn install
 ```
 
 3. ¡Prepárate para el despliegue! 🚀
