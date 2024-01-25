@@ -16,6 +16,7 @@ function Gallery() {
   const [filter, setFilter] = useState(category || "");
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [galleryImages, setGalleryImages] = useState([]);
 
   const handleFilterChange = (newCategory) => {
     setFilter(newCategory);
@@ -38,6 +39,7 @@ function Gallery() {
             image.title.toLowerCase().includes(searchTerm.toLowerCase());
           return hasCategory && matchesSearch;
         });
+        setGalleryImages(filteredImages)
         setImages(filteredImages);
       } catch (error) {
         console.error("Error al obtener los datos de la API:", error);
@@ -55,6 +57,9 @@ function Gallery() {
 
     window.addEventListener("resize", handleResize);
 
+    
+    
+    
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -107,6 +112,9 @@ function Gallery() {
     resetRotation();
   };
 
+  // console.log('galleryImages:', galleryImages)
+  console.log('selectedImage:', selectedImage);
+
   return (
     <>
       <div
@@ -116,8 +124,8 @@ function Gallery() {
       >
         <GalleryFilter onFilterChange={handleFilterChange} />
         <div className="pictures-container">
-          {Array.isArray(images) &&
-            images.map((image) => (
+          {Array.isArray(galleryImages) &&
+            galleryImages.map((image) => (
               <div
                 className={`${image.keyword}`}
                 key={image.id}
@@ -130,7 +138,8 @@ function Gallery() {
             ))}
         </div>
         {modal && selectedImage && (
-          <Modal image={selectedImage} Close={closeModal} />
+           <Modal selectedImage={selectedImage} Close={closeModal} />           
+
         )}
       </div>
     </>

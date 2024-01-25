@@ -19,6 +19,13 @@
   text-align: center;
 }
 
+.pagination{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
 .close {
   color: #aaa;
   float: right;

@@ -13,7 +13,8 @@ import Terms from './pages/Terms'
 import Home from './pages/Home';
 import { CartProvider } from './CartContext';
 import CartDisplay from './components/CartDisplay';
-import Finish from './pages/Finish';  // Importa la nueva página de finalización
+import Finish from './pages/Finish';
+import ArrowButtons from './components/ArrowButtons';  // Importa la nueva página de finalización
 
 
 function App() {
