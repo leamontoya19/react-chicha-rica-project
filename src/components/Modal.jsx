@@ -3,12 +3,17 @@
   import { Link ,useNavigate } from 'react-router-dom';
   import '../styles/Modal.css';
 
-  const Modal = ({ image, Close }) => {
+  const Modal = ({ image, Close, position }) => {
     const [modalVisible, setModalVisible] = useState(true);
     const [cartVisible, setCartVisible] = useState(false);
     const [selectedPrice, setSelectedPrice] = useState('priceSmall'); // Nuevo estado
     const navigate = useNavigate();
     const { addToCart, cartItems, clearCart } = useCart();
+
+    const modalStyle = {
+      top: position === "top" ? "0" : "auto",
+      bottom: position === "bottom" ? "0" : "auto",
+    }
 
     const closeModal = () => {
       setModalVisible(false);

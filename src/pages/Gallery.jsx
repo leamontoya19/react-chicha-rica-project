@@ -16,6 +16,8 @@ function Gallery() {
   const [filter, setFilter] = useState(category || "");
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [modalPosition, setModalPosition] = useState("top");
+
 
   const handleFilterChange = (newCategory) => {
     setFilter(newCategory);
@@ -97,7 +99,22 @@ function Gallery() {
 
   const openModal = (image) => {
     setSelectedImage(image);
+    // Calcula la posición vertical de la imagen en la página
+    const imageElement = document.querySelector(`.${image.keyword}`);
+    const imageRect = imageElement.getBoundingClientRect();
+    const imagePosition = imageRect.top + window.scrollY;
+
+    // Calcula la posición del modal
+    const modalPosition =
+      imagePosition + window.innerHeight > document.body.clientHeight
+        ? "bottom"
+        : "top";
+    
+    // Determina si la imagen está en la parte superior de la página
+    const isTopImage = imagePosition < window.innerHeight / 2;
+    
     setModal(true);
+    setModalPosition(isTopImage ? "top" : "bottom");
     resetRotation();
   };
 
@@ -130,7 +147,7 @@ function Gallery() {
             ))}
         </div>
         {modal && selectedImage && (
-          <Modal image={selectedImage} Close={closeModal} />
+          <Modal image={selectedImage} closeModal={closeModal} position={modalPosition} />
         )}
       </div>
     </>
