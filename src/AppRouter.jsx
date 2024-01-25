@@ -7,6 +7,7 @@ import Access from './pages/Access';
 import Login from './components/Login'
 import Terms from './pages/Terms'
 
+
 const AppRouter = () => {
   return (
     <Router>
