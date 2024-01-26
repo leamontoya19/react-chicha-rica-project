@@ -5,6 +5,7 @@ import GalleryFilter from "../components/GalleryFilter";
 import "../styles/Gallery.css";
 import Modal from "../components/Modal";
 
+
 function Gallery() {
   const navigate = useNavigate();
   const { category } = useParams();
@@ -15,7 +16,11 @@ function Gallery() {
   const [filter, setFilter] = useState(category || "");
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [galleryImages, setGalleryImages] = useState([]);
 
+  const [currentImageIndex, setCurrentImageIndex] = useState(null);
+
+  
   const handleFilterChange = (newCategory) => {
     setFilter(newCategory);
     if (newCategory === "") {
@@ -37,6 +42,7 @@ function Gallery() {
             image.title.toLowerCase().includes(searchTerm.toLowerCase());
           return hasCategory && matchesSearch;
         });
+        setGalleryImages(filteredImages)
         setImages(filteredImages);
       } catch (error) {
         console.error("Error al obtener los datos de la API:", error);
@@ -54,6 +60,9 @@ function Gallery() {
 
     window.addEventListener("resize", handleResize);
 
+    
+    
+    
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -106,6 +115,34 @@ function Gallery() {
     resetRotation();
   };
 
+  useEffect(() => {
+    if (modal && selectedImage) {
+      const currentIndex = galleryImages.findIndex(
+        (image) => image.id === selectedImage.id
+      );
+      setCurrentImageIndex(currentIndex);
+    }
+  }, [modal, selectedImage, galleryImages]);
+
+  const nextImage = () => {
+    if (currentImageIndex !== null && currentImageIndex < galleryImages.length - 1) {
+      const nextIndex = currentImageIndex + 1;
+      setSelectedImage(galleryImages[nextIndex]);
+      setCurrentImageIndex(nextIndex);
+    }
+  }
+  const prevImage = () => {
+    if (currentImageIndex !== null && currentImageIndex > 0) {
+      const prevIndex = currentImageIndex - 1;
+      setSelectedImage(galleryImages[prevIndex]);
+      setCurrentImageIndex(prevIndex);
+    }
+  };
+
+
+  // console.log('galleryImages:', galleryImages)
+  // console.log('selectedImage:', selectedImage);
+
   return (
     <>
       <div
@@ -115,8 +152,8 @@ function Gallery() {
       >
         <GalleryFilter onFilterChange={handleFilterChange} />
         <div className="pictures-container">
-          {Array.isArray(images) &&
-            images.map((image) => (
+          {Array.isArray(galleryImages) &&
+            galleryImages.map((image) => (
               <div
                 className={`${image.keyword}`}
                 key={image.id}
@@ -129,7 +166,11 @@ function Gallery() {
             ))}
         </div>
         {modal && selectedImage && (
-          <Modal image={selectedImage} Close={closeModal} />
+           <Modal selectedImage={selectedImage} 
+              Close={closeModal} 
+              nextImage={nextImage}
+              prevImage={prevImage}/>           
+
         )}
       </div>
     </>

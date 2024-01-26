@@ -10,13 +10,7 @@
     bottom: 0;
     position: absolute;
 
-    /* display: flex;
-    text-align: center;
-    
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
+    margin-top: -90px;
 }
 
 .black-container{
@@ -36,7 +30,7 @@ h2{
     font-family: 'Raleway', sans-serif;
     text-align: center;
     color: #fff;
-    font-size: 37px;
+    font-size: 30px;
     margin-top: 110px;
     display: flex;
     flex-direction: column;
@@ -46,5 +40,5 @@ h2{
 .logo-firma{
     width: 75%;
     text-align: center;
-    cursor: pointer;
+    
 }
