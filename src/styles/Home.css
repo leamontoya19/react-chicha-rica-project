@@ -5,12 +5,24 @@
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;position: absolute;
+    bottom: 0;
+    position: absolute;
 }
-.main-cta {
+/* .main-cta {
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin-top: 14%;
     margin-left: 44%;
-  }
+  }  */
+
+
+  /* @media only screen and (max-width: 840px) {
+    .home-container {
+        background-size: cover;
+    } 
+    .main-cta {
+        display: none;
+
+    }
+  } */

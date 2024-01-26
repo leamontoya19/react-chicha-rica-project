@@ -61,17 +61,10 @@ const Header = () => {
   
   return (
     <div className="main-header">
-      <header>
-        {/* <div className="menu__icon">
-          <i className="fas fa-bars icon"></i>
-        </div>
-        <label className="menu__icon" htmlFor="menu__btn">
-          <span className="navicon"></span>
-        </label> */}
-        {/* separando los elementos del navbar */}
-        <Link to="/" className="logo-header-r">
+       <Link to="/" className="logo-header-r">
             <LogoHeaderR />
         </Link>
+      <header>
         <div className='search-container'>
           <SearchBar
           onChange={handleSearchChange}
@@ -88,8 +81,8 @@ const Header = () => {
         <button className="cart-header" onClick={showCart}>
           🛒 {cartItems.length > 0 && `(${cartItems.length})`}
         </button>
-        {cartVisible && <CartDisplay hideCart={hideCart} />} {/* Renderiza CartDisplay solo cuando cartVisible es true */}
-        <button onClick={closeCart}>X</button>
+        {/* {cartVisible && <CartDisplay hideCart={hideCart} />} /*Renderiza CartDisplay solo cuando cartVisible es true */}
+        {/* <button onClick={closeCart}>X</button> */}
 
       </header>
     </div>

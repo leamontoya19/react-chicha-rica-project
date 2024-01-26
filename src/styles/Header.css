@@ -1,20 +1,28 @@
 .main-header {
   position: absolute;
   z-index: 999999;
-  top: 0px;
-}
-
-header {
-  width: max-content;
+  top: 10px;
+  margin: auto 10px auto ;
+  width: 100%;
   display: flex;
-  /* justify-content:space-between; revisar */
-  align-items: flex-start;;
-  padding: 5px;
-  column-gap: 165px;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
 .logo-header-r{
-  height: 140px;
+  height: 12vw;
+}
+
+header { 
+  width: max-content;
+  display: flex;
+  align-items: flex-start;
+  padding: 5px;
+  column-gap: 2.5vw;
+  margin: auto;
+  position: absolute; 
+  right: 10px;
+  top: 26px;
 }
 
 .toggle-logo {
@@ -36,24 +44,6 @@ header {
   font-weight: 800;
 
 }
-.main-header ul {
-  list-style: none;
-  display: flex;
-  gap: 60px;
-  font-size: 1.4em;
-}
-  
-  header li a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: 300;
-  }
-
-
-.main-header li a:hover {
-  color: #f20519;
-  font-weight: 800;
-}
 .cart-header{
   text-decoration: none;
   color: #fff;
@@ -62,8 +52,9 @@ header {
   border-radius: 0%;
   border: 0cap;
   cursor: pointer;
-  margin-top: -10px;
-  padding: 0px;
+  margin-top: 15px;
+  padding: 0;
+  font-size: xx-large;
 }
 .cart-header:hover{
   text-decoration: none;
@@ -72,5 +63,12 @@ header {
 }
 
 @media only screen and (max-width: 840px) {
+  header{
+    padding: 0px;
+    margin-left: 325px;}
+  .main-header{
   
+  }
+  
+    
 }

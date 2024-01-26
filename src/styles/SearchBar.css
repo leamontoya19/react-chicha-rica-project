@@ -9,6 +9,8 @@
 }
 .icon-container {
   color: #fff;
+  font-size: x-large;
+  margin-top: 30px;
 }
 .icon-container:hover {
   color: #f20519;
