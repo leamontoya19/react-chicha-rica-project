@@ -6,7 +6,7 @@ import Gallery from './pages/Gallery';
 import Access from './pages/Access';
 import Login from './components/Login'
 import Terms from './pages/Terms'
-
+import Payment from './pages/Payment'
 
 const AppRouter = () => {
   return (
@@ -20,6 +20,7 @@ const AppRouter = () => {
         <Route path="/about" element={<About />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/" element={() => <div>Inicio</div>} />
+        <Route path="/payment" element={<Payment />} />
         </Routes>
         
         {/* Agrega una ruta predeterminada, como la página de inicio */}

@@ -142,7 +142,7 @@ function Gallery() {
 
 
   // console.log('galleryImages:', galleryImages)
-  console.log('selectedImage:', selectedImage);
+  // console.log('selectedImage:', selectedImage);
 
   return (
     <>

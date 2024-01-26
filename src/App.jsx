@@ -14,7 +14,8 @@ import Home from './pages/Home';
 import { CartProvider } from './CartContext';
 import CartDisplay from './components/CartDisplay';
 import Finish from './pages/Finish';
-
+import Payment from './pages/Payment'
+import Thanks from './pages/Thanks'
 
 
 function App() {
@@ -29,8 +30,10 @@ function App() {
           <Route path="/access" element={<Access />} />
           <Route path="/login" element={<Login />}/>
           <Route path="/terms" element={<Terms />} />
-
+          <Route path="/payment" element={<Payment />} />
           <Route path="/finish" element={<Finish />} />  {/* Agrega la ruta de la página de finalización */}
+          <Route path="/thanks" element={<Thanks />} />
+        
         </Routes>
 
         
