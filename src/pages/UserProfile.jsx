@@ -1,64 +1,59 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios"; // Asegúrate de tener instalada la librería axios
+import axios from "axios";
 import "../styles/UserProfile.css";
 
-const UserProfile = () => {
-  // Estado para almacenar la lista de usuarios
-  const [userList, setUserList] = useState([]);
+const UserProfile = ({ userId }) => {
+  // Estado para almacenar la información del usuario
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("/users.json");
-
-        // Verificar el tipo de contenido antes de intentar parsear como JSON
+        console.log(response);
+  
         const contentType = response.headers["content-type"];
-        if (contentType && contentType.includes("application/json")) {
-          setUserList(response.data.users);
+  
+        if (contentType.includes("application/json")) {
+          // Accede al primer elemento del arreglo de usuarios
+          const userInfo = response.data[0];
+          console.log(userInfo);
+          setUserData(userInfo);  // Cambiado de contentType a userInfo
         } else {
-          // Manejar la respuesta que no es JSON (puede ser un mensaje de error, HTML, etc.)
           console.warn("La respuesta no es de tipo JSON");
           console.log("Contenido de la respuesta:", response.data);
+          // Puedes establecer un estado para manejar este escenario o mostrar un mensaje al usuario
         }
       } catch (error) {
-        console.error("Error al obtener datos de los usuarios:", error.message);
+        console.error("Error al obtener datos del usuario:", error.message);
       }
     };
-
+  
     fetchData();
-  }, []);
+  }, [userId]);
+  
+
+
+
+  if (!userData) {
+    return <div>Cargando...</div>;
+  }
 
   return (
-    <div>
-      {userList.map((user) => (
-        <div key={user.id} className="profile-container">
-          <div className="avatar-container">
-					<img
-            className="profile-picture"
-            src="/img/cat.jpg"
-            alt={`Perfil de ${user.name}`}
-          />
-            <h1 className="profile-name">{user.name}</h1>
-          </div>
-          <div className="profile-details">
-            <p className="profile-alias">Alias: {user.alias}</p>
-          </div>
-          <div className="contact-info">
-            <h2>Contacto:</h2>
-            <p className="profile-email">Correo: {user.email}</p>
-            <p className="profile-phone">Teléfono: {user.phone}</p>
-          </div>
-          <div className="address-info">
-            <h2>Dirección:</h2>
-            <p className="profile-address">{user.address}</p>
-          </div>
-          <div className="payment-info">
-            <h2>Formas de Pago:</h2>
-            <p className="profile-payment">Tarjeta de crédito: {user.creditCard}</p>
-            <p className="profile-payment">PayPal: {user.paypal}</p>
-          </div>
-        </div>
-      ))}
+    <div className="profile-container">
+      <div className="avatar-container">
+        <img
+          className="profile-picture"
+          src="./img/cat.jpg"
+          alt={`Perfil de ${userData.nombre}`}
+        />
+        <h1 className="profile-name">{`${userData.nombre} ${userData.apellido}`}</h1>
+        <h2 className='profile-id'>{`${userData.id} ${userData.apellido}`}</h2>
+      </div>
+      <div className="profile-details">
+        <p className="profile-email">Correo: {userData.email}</p>
+        <p className="profile-password">Contraseña: {userData.contrasena}</p>
+      </div>
     </div>
   );
 };
