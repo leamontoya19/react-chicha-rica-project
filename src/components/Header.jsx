@@ -1,4 +1,3 @@
-// Header.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Header.css';
@@ -14,10 +13,9 @@ import CartDisplay from './CartDisplay';  // Importa CartDisplay
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const [results, setResults] = useState([]);
-  const [cartVisible, setCartVisible] = useState(false); // Nuevo estado para controlar la visibilidad del carrito
+  const [cartVisible, setCartVisible] = useState(false);
 
-  const { cartItems } = useCart();  // Obtiene el estado del carrito desde el contexto
+  const { cartItems } = useCart();
 
   useEffect(() => {
     const fetchSuggestions = async () => {
@@ -40,12 +38,11 @@ const Header = () => {
 
   const handleSuggestionClick = (selectedSuggestion) => {
     setSearchTerm(selectedSuggestion.title);
-    // Realiza acciones adicionales si es necesario
   };
 
   const handleSearchClickOutside = () => {
     // Lógica para cerrar las sugerencias
-    setResults([]); // Esto debería limpiar los resultados
+    // No se utiliza setResults([]); ya que no hay un estado results en este componente
   };
 
   const showCart = () => {
@@ -55,10 +52,11 @@ const Header = () => {
   const hideCart = () => {
     setCartVisible(false);
   };
+
   const closeCart = () => {
     setCartVisible(false);
   };
-  
+
   return (
     <div className="main-header">
        <Link to="/" className="logo-header-r">
@@ -66,14 +64,15 @@ const Header = () => {
         </Link>
       <header>
         <div className='search-container'>
-          <SearchBar
-          onChange={handleSearchChange}
-          onClickOutside={handleSearchClickOutside}
-          />
-          <Suggestions
-          suggestions={suggestions}
-          onClick={handleSuggestionClick}
-          />
+        <SearchBar
+              setResults={setSuggestions} // Asegúrate de que estás pasando setResults correctamente
+              onChange={handleSearchChange}
+              onClickOutside={handleSearchClickOutside}
+            />
+        <Suggestions
+              results={suggestions} // Utiliza results en lugar de suggestions
+              onClick={handleSuggestionClick}
+            />
         </div>
 
         <Navbar />

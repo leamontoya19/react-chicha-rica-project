@@ -33,7 +33,7 @@
 
 
 
-@media(max-width: 991px) {
+@media(max-width: 1228px) {
   .pictures-container {
     -webkit-column-count: 2;
     -moz-column-count: 2;
@@ -41,7 +41,8 @@
   }
 }
 
-@media (max-width: 767px) {
+
+@media (max-width: 790px) {
   .pictures-container {
     -webkit-column-count: 1;
     -moz-column-count: 1;

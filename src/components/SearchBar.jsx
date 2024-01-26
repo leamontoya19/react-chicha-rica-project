@@ -22,7 +22,6 @@ export const SearchBar = ({ setResults }) => {
       const response = await axios.get(`/api.json?searchTerm=${input}`);
       const data = response.data;
 
-      // Ensure that data.data is an array
       const results = Array.isArray(data.data)
         ? data.data.filter((product) => {
             return (
@@ -34,7 +33,6 @@ export const SearchBar = ({ setResults }) => {
           })
         : [];
 
-      // Check if setResults is a function before calling it
       if (typeof setResults === "function") {
         setResults(results);
       } else {
@@ -51,7 +49,7 @@ export const SearchBar = ({ setResults }) => {
   };
 
   const handleIconClick = (e) => {
-    e.stopPropagation(); // Stop event propagation
+    e.stopPropagation();
     handleInputFocus();
   };
 
@@ -74,3 +72,4 @@ export const SearchBar = ({ setResults }) => {
     </div>
   );
 };
+

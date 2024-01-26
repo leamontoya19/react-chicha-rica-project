@@ -5,7 +5,6 @@ import GalleryFilter from "../components/GalleryFilter";
 import "../styles/Gallery.css";
 import Modal from "../components/Modal";
 
-
 function Gallery() {
   const navigate = useNavigate();
   const { category } = useParams();
@@ -15,12 +14,10 @@ function Gallery() {
   const [containerRect, setContainerRect] = useState(null);
   const [filter, setFilter] = useState(category || "");
   const [searchTerm, setSearchTerm] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
+  // Eliminamos el estado de las sugerencias
   const [galleryImages, setGalleryImages] = useState([]);
-
   const [currentImageIndex, setCurrentImageIndex] = useState(null);
 
-  
   const handleFilterChange = (newCategory) => {
     setFilter(newCategory);
     if (newCategory === "") {
@@ -42,7 +39,7 @@ function Gallery() {
             image.title.toLowerCase().includes(searchTerm.toLowerCase());
           return hasCategory && matchesSearch;
         });
-        setGalleryImages(filteredImages)
+        setGalleryImages(filteredImages);
         setImages(filteredImages);
       } catch (error) {
         console.error("Error al obtener los datos de la API:", error);
@@ -60,32 +57,17 @@ function Gallery() {
 
     window.addEventListener("resize", handleResize);
 
-    
-    
-    
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [category, filter, searchTerm]);
 
-  useEffect(() => {
-    const fetchSuggestions = async () => {
-      try {
-        const response = await axios.get(
-          `/api/suggestions?searchTerm=${searchTerm}`
-        );
-        setSuggestions(response.data);
-      } catch (error) {
-        console.error("Error al obtener sugerencias:", error);
-      }
-    };
-
-    fetchSuggestions();
-  }, [searchTerm]);
+  // Eliminamos la lógica para obtener sugerencias
+  // ...
 
   const handleMouseMove = (event) => {
-    const mouseX = event.clientX - containerRect.left - containerRect.width / 2;
-    const mouseY = event.clientY - containerRect.top - containerRect.height / 5;
+    const mouseX = event.clientX - containerRect.left - containerRect.width / 4;
+    const mouseY = event.clientY - containerRect.top - containerRect.height / 10;
     const rotateX = (mouseY / containerRect.height) * 3;
     const rotateY = (mouseX / containerRect.width) * 6;
 
@@ -125,12 +107,16 @@ function Gallery() {
   }, [modal, selectedImage, galleryImages]);
 
   const nextImage = () => {
-    if (currentImageIndex !== null && currentImageIndex < galleryImages.length - 1) {
+    if (
+      currentImageIndex !== null &&
+      currentImageIndex < galleryImages.length - 1
+    ) {
       const nextIndex = currentImageIndex + 1;
       setSelectedImage(galleryImages[nextIndex]);
       setCurrentImageIndex(nextIndex);
     }
-  }
+  };
+
   const prevImage = () => {
     if (currentImageIndex !== null && currentImageIndex > 0) {
       const prevIndex = currentImageIndex - 1;
@@ -139,18 +125,16 @@ function Gallery() {
     }
   };
 
-
-  // console.log('galleryImages:', galleryImages)
-  // console.log('selectedImage:', selectedImage);
+  console.log('selectedImage:', selectedImage);
 
   return (
     <>
+      <GalleryFilter onFilterChange={handleFilterChange} />
       <div
         className="gallery-container"
         onMouseMove={handleMouseMove}
         onMouseLeave={resetRotation}
       >
-        <GalleryFilter onFilterChange={handleFilterChange} />
         <div className="pictures-container">
           {Array.isArray(galleryImages) &&
             galleryImages.map((image) => (
@@ -166,11 +150,12 @@ function Gallery() {
             ))}
         </div>
         {modal && selectedImage && (
-           <Modal selectedImage={selectedImage} 
-              Close={closeModal} 
-              nextImage={nextImage}
-              prevImage={prevImage}/>           
-
+          <Modal
+            selectedImage={selectedImage}
+            Close={closeModal}
+            nextImage={nextImage}
+            prevImage={prevImage}
+          />
         )}
       </div>
     </>

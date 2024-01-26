@@ -3,7 +3,6 @@ import { useCart } from '../CartContext';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Modal.css';
 
-
 const Modal = (props) => {
   const [modalVisible, setModalVisible] = useState(true);
   const [cartVisible, setCartVisible] = useState(false);
@@ -12,12 +11,28 @@ const Modal = (props) => {
   const { addToCart, cartItems, clearCart } = useCart();
   const selectedImage = props.selectedImage;
   const [currentImageIndex, setCurrentImageIndex] = useState("");
-  
+  const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
 
-  
+  useEffect(() => {
+    if (modalVisible && selectedImage) {
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+
+      // Ajusta estos valores según tus necesidades
+      const modalWidth = 900;
+      const modalHeight = 700;
+
+      // Calcula la posición para centrar el modal en la ventana
+      const top = (windowHeight - modalHeight) / 2;
+      const left = (windowWidth - modalWidth) / 2;
+
+      setModalPosition({ top, left });
+    }
+  }, [modalVisible, selectedImage]);
+
   const closeModal = () => {
     setModalVisible(false);
-    Close();
+    props.Close();
   };
 
   const showPrevImage = () => {
@@ -30,7 +45,6 @@ const Modal = (props) => {
     if (props.nextImage) {
       props.nextImage();
     }
-    
   };
 
   const imageUrl = selectedImage ? `img/${selectedImage.url}` : '';
@@ -39,7 +53,6 @@ const Modal = (props) => {
   const handlePriceChange = (event) => {
     const newSize = event.target.value;
 
-    // Actualiza el estado de selectedPrice según la opción seleccionada
     switch (newSize) {
       case "priceSmall":
         setSelectedPrice("priceSmall");
@@ -51,7 +64,7 @@ const Modal = (props) => {
         setSelectedPrice("priceLarge");
         break;
       default:
-        setSelectedPrice("price"); // Fallback a precio general en caso de error
+        setSelectedPrice("price");
     }
   };
 
@@ -67,7 +80,7 @@ const Modal = (props) => {
     setCartVisible(false);
   };
 
-    const calculateTotal = () => {
+  const calculateTotal = () => {
     const total = cartItems.reduce((acc, item) => acc + item.price, 0);
     return `${total}€`;
   };
@@ -77,11 +90,11 @@ const Modal = (props) => {
   };
 
   return (
-    <div className={`modal ${modalVisible ? 'visible' : ''}`}>
-      <div className="modal-content">
+    <div className={`modal ${modalVisible ? 'visible' : ''}`} style={{ width: '100%', height: '100%' }}>
+    <div className="modal-content">
         <span className="close" onClick={closeModal}>
           &times;
-        </span>              
+        </span>
 
         <div className='pagination'>
           <img src={imageUrl} alt={imageAlt} style={{ width: '100%' }} />
@@ -89,7 +102,6 @@ const Modal = (props) => {
             <button className='arrow' onClick={showPrevImage}>{'<'}</button>
             <button className='arrow' onClick={showNextImage}>{'>'}</button>
           </div>
-          
         </div>
 
         <div className='Data'>
@@ -101,7 +113,7 @@ const Modal = (props) => {
                 <option value="priceSmall">Tamaño pequeño</option>
                 <option value="priceMedium">Tamaño mediano</option>
                 <option value="priceLarge">Tamaño grande</option>
-          </select>
+              </select>
             </>
           )}
         </div>
@@ -113,8 +125,7 @@ const Modal = (props) => {
           <button className='cart' onClick={openCart}>
             🛒
           </button>
-          </div>    
-        
+        </div>
 
         {cartVisible && (
           <div className="cart-content">
