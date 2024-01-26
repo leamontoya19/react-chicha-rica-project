@@ -1,0 +1,73 @@
+  /*Filtros categorías*/
+  .gallery_filter {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 50px;
+  }
+  
+  .gallery__buttonCategory {
+    background-color: #262726;
+    color: white;
+    border: white solid 1px;
+    min-width: 13%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .gallery__buttonCategory:hover {
+    font-weight: bolder;
+    border: white solid 2px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .gallery_filtersSubCategory {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    gap: 30px;
+    height: 10%;
+    background-color: #830c0c;
+    padding: 1%;
+    border-radius: 43px;
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  .gallery__buttonSubCategory {
+    background-color: #830c0c;
+    color: white;
+    border: #830c0c solid 0.5px;
+    font-size: 0.8em;
+    display: none;
+  }
+  
+  .gallery_filtersSubCategory button a {
+    text-decoration: none;
+    color: white;
+    border: #830c0c solid 0.5px;
+    font-size: 1em;
+  }
+  
+  .gallery_filtersSubCategory button a:hover {
+    border: #830c0c solid 0.5px;
+    font-size: 1.02em;
+    font-weight: 700;
+  }
+  
+  .gallery_filtersSubCategory button a:active {
+    border: #830c0c solid 0.5px;
+    font-size: 1.02em;
+    font-weight: 500;
+    color: #f20519;
+  }
+  
+  .gallery_filtersSubCategory button a:focus {
+    border: #830c0c solid 0.5px;
+    font-size: 1.04em;
+    font-weight: 800;
+    color: #f20519;
+  }
