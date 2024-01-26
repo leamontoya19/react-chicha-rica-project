@@ -4,7 +4,7 @@
     background-color: transparent;
     width: 100vw;
     margin: auto;
-    margin-top: 200px;
+    margin-top: 150px;
 }
 
 .formulario {
@@ -18,7 +18,7 @@
     background-color: #8c8c8c;
     border: 1px solid #474343;
 
-    margin-top: -10px;
+    margin-top: -20px;
     padding: 30px 40px 75px 40px;
     border-radius: 10px;
     height: auto;       
@@ -27,7 +27,7 @@
     
 }
 
-h4{
+.formulario h4{
     font-size: 25px;
     display: flex;
     justify-content: center;
@@ -47,7 +47,7 @@ h4{
     padding: 30px;
     width: auto;
     height: 70%; 
-    margin-top: -16px;
+    margin-top: 30px;
 }
 
 .form-group {
@@ -222,10 +222,7 @@ span{
 /* Media query para pantallas más pequeñas */
 @media screen and (max-width: 768px) {
 
-    h4 {
-        font-size: 20px;
-        /* Ajusta el ancho al 100% en pantallas más pequeñas */
-    }
+    
 }
 
 .form-group{

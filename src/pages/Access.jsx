@@ -99,7 +99,7 @@ const Access = () => {
   };
 
   const redirectToTerms = () => {
-    navigate('/payment')
+    navigate('/terms')
   }
 
   return (
