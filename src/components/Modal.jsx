@@ -17,7 +17,8 @@ const Modal = (props) => {
   
   const closeModal = () => {
     setModalVisible(false);
-    Close();
+    console.log('Cerrando el modal')
+    
   };
 
   const showPrevImage = () => {

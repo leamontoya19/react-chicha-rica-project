@@ -168,7 +168,7 @@ function Gallery() {
         </div>
         {modal && selectedImage && (
            <Modal selectedImage={selectedImage} 
-              Close={closeModal} 
+              closeModal={closeModal} 
               nextImage={nextImage}
               prevImage={prevImage}/>           
 
