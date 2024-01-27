@@ -23,10 +23,10 @@ const CartDisplay = () => {
             ))}
           </ul>
           <p>Total: {calculateTotal()}</p>
-          <button onClick={clearCart}>Clear Cart</button>
+          <button onClick={clearCart}>Vacíar carrito</button>
         </>
       ) : (
-        <p>Your cart is empty.</p>
+        <p>Tu carrito está vacío</p>
       )}
     </div>
   );

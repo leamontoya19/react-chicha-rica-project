@@ -32,13 +32,13 @@ function App() {
           <Route path="/login" element={<Login />}/>
           <Route path="/terms" element={<Terms />} />
           <Route path="/payment" element={<Payment />} />          
-          <Route path="/user-profile/:userId?" element={<UserProfile />} />
+          <Route path="/user-profile/:userId?" element={<UserProfile userId={1} />} />
           <Route path="/finish" element={<Finish />} />  {/* Agrega la ruta de la página de finalización */}
           <Route path="/thanks" element={<Thanks />} />
+          {/* <Route path="/multiverse" element={<Thanks />} /> */}
         
         </Routes>
 
-        <UserProfile userId={1} />
       </CartProvider>
       <Footer />
     </Router>

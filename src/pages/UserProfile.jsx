@@ -44,16 +44,32 @@ const UserProfile = ({ userId }) => {
       <div className="avatar-container">
         <img
           className="profile-picture"
-          src="./img/cat.jpg"
+          src="/img/cat.jpg"
           alt={`Perfil de ${userData.nombre}`}
         />
-        <h1 className="profile-name">{`${userData.nombre} ${userData.apellido}`}</h1>
-        <h2 className='profile-id'>{`${userData.id} ${userData.apellido}`}</h2>
+        <div className="user-info">
+          <h1 className="profile-name">{`${userData.nombre} ${userData.apellido}`}</h1>
+          <h2 className='profile-id'>{`ID : ${userData.id}`}</h2>
+        </div>
       </div>
       <div className="profile-details">
         <p className="profile-email">Correo: {userData.email}</p>
         <p className="profile-password">Contraseña: {userData.contrasena}</p>
       </div>
+
+      {/* <div className="flipated-button">
+      <button
+        onClick={() => {
+          // Redireccionar solo si hay datos de usuario
+          if (userData) {
+            // Redirige a la galería virtual
+            window.location.href = "/multiverse";
+          }
+        }}
+      >
+        Flipado
+      </button>
+      </div> */}
     </div>
   );
 };

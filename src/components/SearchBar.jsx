@@ -13,7 +13,10 @@ export const SearchBar = ({ setResults }) => {
 
   const handleInputBlur = () => {
     if (input.trim() === "") {
-      setIsExpanded(false);
+      // Retrasar la actualización de isExpanded para permitir que handleInputFocus se ejecute primero
+      setTimeout(() => {
+        setIsExpanded(false);
+      }, 200); // Puedes ajustar el tiempo de espera según sea necesario
     }
   };
 
@@ -48,10 +51,6 @@ export const SearchBar = ({ setResults }) => {
     fetchData();
   };
 
-  const handleIconClick = (e) => {
-    e.stopPropagation();
-    handleInputFocus();
-  };
 
   return (
     <div className={`search-bar ${isExpanded ? "expanded" : ""}`}>
@@ -63,10 +62,11 @@ export const SearchBar = ({ setResults }) => {
           onBlur={handleInputBlur}
           value={input}
           onChange={(e) => handleChange(e.target.value)}
+          className="search-input"
         />
       ) : (
         <div className="icon-container" onClick={handleInputFocus}>
-          <FaSearch />
+          <FaSearch className="search-icon"/>
         </div>
       )}
     </div>

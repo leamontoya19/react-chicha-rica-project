@@ -9,10 +9,16 @@
 }
 .icon-container {
   color: #fff;
-  font-size: x-large;
-  margin-top: 30px;
+  font-size: large;
+  margin-top: 1.5em;
 }
 .icon-container:hover {
   color: #f20519;
   font-weight: 800;
+}
+.search-input {
+  background-color: #f20519;
+  border-radius: 4px;
+  margin-top: 26px;
+  height: 20px;
 }

@@ -1,3 +1,16 @@
 [
-  
+  {
+    "id": "1654e092-cd40-4d2a-8693-94c96377051e",
+    "nombre": "Abelardo",
+    "apellido": "Acosta",
+    "email": "abelardoacostacracco@gmail.com",
+    "contrasena": "asasaasas"
+  },
+  {
+    "id": "3ef9af84-5e73-4653-83ce-7c5aa4f782c6",
+    "nombre": "Abelardo",
+    "apellido": "Acosta",
+    "email": "abelardoacostacracco@gmail.com",
+    "contrasena": "asasasasasas"
+  }
 ]
