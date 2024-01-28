@@ -29,8 +29,11 @@ const redirectToGallery = () => {
         
         <div>
         {cartItems.map((item, index) => (
+          
           <div key={index}>
+            <h4>{item.title}</h4>
             <img src={`img/${item.url}`} alt={item.title} style={{ width: '100px', height: '100px' }} />
+            <span>{item.price} €</span>
           </div>
            ))}
         </div>

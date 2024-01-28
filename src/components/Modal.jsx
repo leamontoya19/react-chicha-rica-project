@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../styles/Modal.css";
 //WISH LIST CONTEXT
 import { useWishList } from "../hooks/WishListContext";
+import { height } from "@material-ui/system";
 
 
 const Modal = (props) => {
@@ -78,6 +79,7 @@ const Modal = (props) => {
     addToCart({
       title: selectedImage.title,
       price: selectedImage[selectedPrice],
+      url: selectedImage.url
     });
   };
 
@@ -138,7 +140,7 @@ const Modal = (props) => {
         </span>
 
         <div className="pagination">
-          <img src={`/${imageUrl}`} alt={imageAlt} style={{ width: "100%" }} />
+        <img className="img-modal" src={`/${imageUrl}`} alt={imageAlt} style={{ width: "80%", height: "10%" }}/>
           <div className="arrows">
             <button className="arrow" onClick={showPrevImage}>
               {"<"}
@@ -175,13 +177,13 @@ const Modal = (props) => {
             handleAddToWishList(); // Modificado para agregar y redirigir
           }}
         >
-          🩶
+          🤍
         </button>
           <button className="cart" onClick={handleAddToCart}>
             Añadir
           </button>
-          <button className="cart-btn" onClick={openCart}>
-            🛒
+          <button className="cart" onClick={openCart}>
+            Ver mi carrito
           </button>
         </div>
 
