@@ -57,7 +57,7 @@ const UserProfile = ({ userId }) => {
         <p className="profile-password">Contraseña: {userData.contrasena}</p>
       </div>
 
-      {/* <div className="flipated-button">
+      <div className="flipated-button">
       <button
         onClick={() => {
           // Redireccionar solo si hay datos de usuario
@@ -69,7 +69,7 @@ const UserProfile = ({ userId }) => {
       >
         Flipado
       </button>
-      </div> */}
+      </div>
     </div>
   );
 };

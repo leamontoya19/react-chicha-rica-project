@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { useCart } from "../CartContext";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/Modal.css";
+//WISH LIST CONTEXT
+import { useWishList } from "../hooks/WishListContext";
+
 
 const Modal = (props) => {
   const [modalVisible, setModalVisible] = useState(true);
@@ -10,8 +13,11 @@ const Modal = (props) => {
   const navigate = useNavigate();
   const { addToCart, cartItems, clearCart } = useCart();
   const selectedImage = props.selectedImage;
-  const [currentImageIndex, setCurrentImageIndex] = useState("");
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
+
+  //WISH STATE
+  const [isWishListed, setIsWishListed] = useState(false);
+
 
   useEffect(() => {
     if (modalVisible && selectedImage) {
@@ -75,6 +81,8 @@ const Modal = (props) => {
     });
   };
 
+  
+
   const openCart = () => {
     setCartVisible(true);
   };
@@ -91,6 +99,33 @@ const Modal = (props) => {
   const finishPurchase = () => {
     navigate("/finish");
   };
+// WISHLIST
+
+  const history = useNavigate(); 
+
+
+  const toggleWishList = () => {
+    setIsWishListed((prevIsWishListed) => !prevIsWishListed);
+  }
+
+  const { addToWishList, wishList } = useWishList();
+
+  const handleAddToWishList = () => {
+    // Añade a la lista de deseos
+    addToWishList({
+      title: selectedImage.title,
+      price: selectedImage[selectedPrice],
+      url: selectedImage.url
+    });
+
+    // Redirige a la página de la lista de deseos
+    navigate("/wishlist");
+  };
+  
+
+// FIN WISHLIST
+
+
 
   return (
     <div
@@ -103,7 +138,7 @@ const Modal = (props) => {
         </span>
 
         <div className="pagination">
-          <img src={imageUrl} alt={imageAlt} style={{ width: "100%" }} />
+          <img src={`/${imageUrl}`} alt={imageAlt} style={{ width: "100%" }} />
           <div className="arrows">
             <button className="arrow" onClick={showPrevImage}>
               {"<"}
@@ -131,12 +166,21 @@ const Modal = (props) => {
             </>
           )}
         </div>
-        <div className="butons__modal">
-          <button className="penta">❤️</button>
+        <div className="butons-modal">
+        <button
+          className={`penta ${isWishListed ? 'active' : ''}`}
+          onClick={() => {
+            addToWishList();
+            toggleWishList();
+            handleAddToWishList(); // Modificado para agregar y redirigir
+          }}
+        >
+          🩶
+        </button>
           <button className="cart" onClick={handleAddToCart}>
             Añadir
           </button>
-          <button className="cart" onClick={openCart}>
+          <button className="cart-btn" onClick={openCart}>
             🛒
           </button>
         </div>

@@ -8,7 +8,7 @@
   padding: 2rem;
   gap: 1.5rem;
   margin: 1rem auto;
-  margin-top: 100px;
+  margin-top: 200px;
 }
 
 .filter-title {
@@ -50,6 +50,7 @@
 .gallery-button.active {
   opacity: 0.5;
   color: #830c0c;
+  background-color: antiquewhite;
   border: 4px solid red; /* Añadir 'solid' u otro tipo de borde según sea necesario */
 }
 

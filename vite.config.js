@@ -1,14 +1,15 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react'
+
+
+// Asegúrate de tener instaladas las dependencias necesarias:
+// yarn add vite vitest
+
 export default defineConfig({
   plugins: [react()],
-  server: {
-    port: 5173, // Puerto deseado
+  test: {
+    environment: 'jsdom'
   },
-  build: {
-    outDir: 'dist', // Carpeta de salida, puedes cambiarla según tu preferencia
-  },
+  
 });
-

@@ -1,5 +1,5 @@
 .home-container {
-    background-image: url(./img/fotoBg.jpg);
+    background-image: url(../../public/img/fotoBg.jpg);
     background-size: cover;
     background-position: 50%;
     top: 0;

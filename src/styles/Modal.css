@@ -50,7 +50,7 @@
 }
 
 
-.butons__modal{
+.butons-modal{
   display: flex;
   align-items: flex-start;
   justify-content: space-around;
@@ -59,4 +59,13 @@
 
 .close-cart-btn {
   margin-left: 45%;
+}
+
+.cart-btn:hover{
+  background-color: cornsilk;
+}
+
+/* Estilo cuando está en la lista de deseos */
+.penta:hover {
+  background-color: red;
 }

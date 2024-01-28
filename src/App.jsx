@@ -12,22 +12,24 @@ import Login from './components/Login'
 import Terms from './pages/Terms'
 import Home from './pages/Home';
 import { CartProvider } from './CartContext';
-// import CartDisplay from './components/CartDisplay';
+import EasterEgg from './pages/EasterEgg/FlipatedVerse';
 import Finish from './pages/Finish';
 import Payment from './pages/Payment'
 import Thanks from './pages/Thanks'
+import WishList from './pages/WishList'
+import { WishListProvider } from './hooks/WishListContext';
 
 
 function App() {
   return (
     <Router>
       <CartProvider>
+      <WishListProvider>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/gallery/:category?" element={<Gallery />} />
-
           <Route path="/access" element={<Access />} />
           <Route path="/login" element={<Login />}/>
           <Route path="/terms" element={<Terms />} />
@@ -35,10 +37,10 @@ function App() {
           <Route path="/user-profile/:userId?" element={<UserProfile userId={1} />} />
           <Route path="/finish" element={<Finish />} />  {/* Agrega la ruta de la página de finalización */}
           <Route path="/thanks" element={<Thanks />} />
-          {/* <Route path="/multiverse" element={<Thanks />} /> */}
-        
+          <Route path="/multiverse" element={<EasterEgg />} /> 
+          <Route path="/wishlist" element={<WishList/>} />
         </Routes>
-
+        </WishListProvider>
       </CartProvider>
       <Footer />
     </Router>
