@@ -1,29 +1,43 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../styles/Suggestions.css";
 
 export const Suggestions = ({ results, onClickOutside }) => {
   const suggestionsRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
+      console.log("Click outside detected");
       if (
         suggestionsRef.current &&
         !suggestionsRef.current.contains(event.target)
       ) {
-        onClickOutside();
+        console.log("Closing suggestions");
+        setIsOpen(false);
+        if (typeof onClickOutside === 'function') {
+          onClickOutside();
+        }
       }
     };
 
+    console.log("Adding click event listener");
     document.addEventListener("click", handleClickOutside);
 
     return () => {
+      console.log("Removing click event listener");
       document.removeEventListener("click", handleClickOutside);
     };
   }, [onClickOutside]);
 
-  // Check if 'results' is undefined or not an array
-  if (!results || !Array.isArray(results)) {
-    return null; // or handle accordingly based on your requirements
+  useEffect(() => {
+    // Abre las sugerencias cuando los resultados están disponibles
+    if (results && results.length > 0) {
+      setIsOpen(true);
+    }
+  }, [results]);
+
+  if (!results || !Array.isArray(results) || !isOpen) {
+    return null;
   }
 
   return (

@@ -212,3 +212,4 @@ export const LnkdIcon = () => (<svg width="11" height="11" viewBox="0 0 11 11" f
 </svg>
 )
 
+// export const CartIcon =

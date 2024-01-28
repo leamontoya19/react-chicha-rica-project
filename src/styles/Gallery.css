@@ -1,4 +1,4 @@
-.gallery__container {
+.gallery-container {
   display: grid;
   margin: 2px;
   
@@ -17,7 +17,6 @@
 
 .img-container {
   cursor: pointer;
-  margin-bottom: 12px;
   position: relative;
   margin-bottom: 60px; 
 }
@@ -32,8 +31,7 @@
 
 
 
-
-@media(max-width: 991px) {
+@media(max-width: 1228px) {
   .pictures-container {
     -webkit-column-count: 2;
     -moz-column-count: 2;
@@ -41,7 +39,8 @@
   }
 }
 
-@media (max-width: 767px) {
+
+@media (max-width: 790px) {
   .pictures-container {
     -webkit-column-count: 1;
     -moz-column-count: 1;

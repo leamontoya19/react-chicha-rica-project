@@ -1,23 +1,21 @@
-// Header.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Header.css';
 import { LogoHeaderR } from '../assets/icons';
-import BotonToggle from './BotonToggle';
+import axios from 'axios';
+import Navbar from './Navbar';
 import { SearchBar } from './SearchBar';
 import { Suggestions } from './Suggestions';
 import { useCart } from '../CartContext';  // Importa useCart
 import CartDisplay from './CartDisplay';  // Importa CartDisplay
 
-import axios from 'axios';
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const [results, setResults] = useState([]);
-  const [cartVisible, setCartVisible] = useState(false); // Nuevo estado para controlar la visibilidad del carrito
+  const [cartVisible, setCartVisible] = useState(false);
 
-  const { cartItems } = useCart();  // Obtiene el estado del carrito desde el contexto
+  const { cartItems } = useCart();
 
   useEffect(() => {
     const fetchSuggestions = async () => {
@@ -40,12 +38,11 @@ const Header = () => {
 
   const handleSuggestionClick = (selectedSuggestion) => {
     setSearchTerm(selectedSuggestion.title);
-    // Realiza acciones adicionales si es necesario
   };
 
   const handleSearchClickOutside = () => {
     // Lógica para cerrar las sugerencias
-    setResults([]); // Esto debería limpiar los resultados
+    // No se utiliza setResults([]); ya que no hay un estado results en este componente
   };
 
   const showCart = () => {
@@ -55,52 +52,37 @@ const Header = () => {
   const hideCart = () => {
     setCartVisible(false);
   };
+
   const closeCart = () => {
     setCartVisible(false);
   };
-  
+
   return (
     <div className="main-header">
-      <header>
-        <div className="menu__icon">
-          <i className="fas fa-bars icon"></i>
-        </div>
-        {/* eliminé el checkbox que no lo necesitamos */}
-        <label className="menu__icon" htmlFor="menu__btn">
-          <span className="navicon"></span>
-        </label>
-
-        <nav className="nav-bar">
-          <Link to="/" className="logo-header-r">
+       <Link to="/" className="logo-header-r">
             <LogoHeaderR />
-          </Link>
-          <ul>
-            <SearchBar
+        </Link>
+      <header>
+        <div className='search-container'>
+        <SearchBar
+              setResults={setSuggestions} // Asegúrate de que estás pasando setResults correctamente
               onChange={handleSearchChange}
               onClickOutside={handleSearchClickOutside}
             />
-            <Suggestions
-              suggestions={suggestions}
+        <Suggestions
+              results={suggestions} // Utiliza results en lugar de suggestions
               onClick={handleSuggestionClick}
             />
-            <BotonToggle />
-            <li>
-              <Link to="/about">ABOUT</Link>
-            </li>
-            <li>
-              <Link to="/gallery">GALERIA</Link>
-            </li>
-            <li>
-              <Link to="/access">ACCESO</Link>
-            </li>
-            <button className="cart-header" onClick={showCart}>
-              🛒 {cartItems.length > 0 && `(${cartItems.length})`}
-            </button>
-          </ul>
-        </nav>
+        </div>
 
-        {cartVisible && <CartDisplay hideCart={hideCart} />} {/* Renderiza CartDisplay solo cuando cartVisible es true */}
-        <button onClick={closeCart}>X</button>
+        <Navbar />
+
+        <button className="cart-header" onClick={showCart}>
+          🛒 {cartItems.length > 0 && `(${cartItems.length})`}
+        </button>
+        {/* {cartVisible && <CartDisplay hideCart={hideCart} />} /*Renderiza CartDisplay solo cuando cartVisible es true */}
+        {/* <button onClick={closeCart}>X</button> */}
+
       </header>
     </div>
   );

@@ -81,9 +81,9 @@ export default function Terms() {
 
         <div className='paragraph'>
           <h4>Cambios en los Términos:</h4>
-              <p>Chicha Rika Studio se reserva el derecho de modificar estos términos. Notificaremos cualquier cambio.
-                  </p>
-                </div>
+          <p>Chicha Rika Studio se reserva el derecho de modificar estos términos. Notificaremos cualquier cambio.
+          </p>
+        </div>
         
         
 

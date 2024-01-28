@@ -1,11 +1,9 @@
-// Gallery.js
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import GalleryFilter from "../components/GalleryFilter";
 import "../styles/Gallery.css";
 import Modal from "../components/Modal";
-
 
 function Gallery() {
   const navigate = useNavigate();
@@ -16,25 +14,18 @@ function Gallery() {
   const [containerRect, setContainerRect] = useState(null);
   const [filter, setFilter] = useState(category || "");
   const [searchTerm, setSearchTerm] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
   const [galleryImages, setGalleryImages] = useState([]);
-
   const [currentImageIndex, setCurrentImageIndex] = useState(null);
 
+  const galleryContainerRef = useRef(null);
+
   
-  const handleFilterChange = (newCategory) => {
-    setFilter(newCategory);
-    if (newCategory === "") {
-      navigate("/gallery");
-    } else {
-      navigate(`/gallery/${newCategory}`);
-    }
-  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("/api.json");
+        console.log("Respuesta del servidor:", response.data);
         const dataApi = response.data;
         const filteredImages = dataApi.data.filter((image) => {
           const hasCategory = !filter || image.keyword.includes(filter);
@@ -43,7 +34,9 @@ function Gallery() {
             image.title.toLowerCase().includes(searchTerm.toLowerCase());
           return hasCategory && matchesSearch;
         });
-        setGalleryImages(filteredImages)
+        setSearchTerm(searchTerm);
+        setGalleryImages(filteredImages);
+        console.log("Número de imágenes después del filtrado:", filteredImages.length);
         setImages(filteredImages);
       } catch (error) {
         console.error("Error al obtener los datos de la API:", error);
@@ -52,48 +45,43 @@ function Gallery() {
 
     fetchData();
 
-    const galleryContainer = document.querySelector(".gallery-container");
-    setContainerRect(galleryContainer.getBoundingClientRect());
+    const galleryContainer = galleryContainerRef.current;
 
-    const handleResize = () => {
-      setContainerRect(galleryContainer.getBoundingClientRect());
+    const updateContainerRect = () => {
+      if (galleryContainer) {
+        setContainerRect(galleryContainer.getBoundingClientRect());
+      }
     };
 
+    updateContainerRect();
+
+    const handleResize = () => {
+      updateContainerRect();
+    };
+
+    galleryContainer.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("resize", handleResize);
 
-    
-    
-    
     return () => {
+      galleryContainer.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
     };
   }, [category, filter, searchTerm]);
 
-  useEffect(() => {
-    const fetchSuggestions = async () => {
-      try {
-        const response = await axios.get(
-          `/api/suggestions?searchTerm=${searchTerm}`
-        );
-        setSuggestions(response.data);
-      } catch (error) {
-        console.error("Error al obtener sugerencias:", error);
-      }
-    };
-
-    fetchSuggestions();
-  }, [searchTerm]);
-
   const handleMouseMove = (event) => {
-    const mouseX = event.clientX - containerRect.left - containerRect.width / 2;
-    const mouseY = event.clientY - containerRect.top - containerRect.height / 5;
-    const rotateX = (mouseY / containerRect.height) * 3;
-    const rotateY = (mouseX / containerRect.width) * 6;
+    if (containerRect) {
+      const mouseX = event.clientX - containerRect.left - containerRect.width / 2;
+      const mouseY = event.clientY - containerRect.top - containerRect.height / 4;
+      const rotateX =
+        containerRect.height !== 0 ? (mouseY / containerRect.height) * 50 : 2;
+      const rotateY =
+        containerRect.width !== 0 ? (mouseX / containerRect.width) * 50 : 0;
 
-    const imgContainers = document.querySelectorAll(".img-container");
-    imgContainers.forEach((imgContainer) => {
-      imgContainer.style.transform = `perspective(1000px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
-    });
+      const imgContainers = document.querySelectorAll(".img-container");
+      imgContainers.forEach((imgContainer) => {
+        imgContainer.style.transform = `perspective(1000px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+    }
   };
 
   const resetRotation = () => {
@@ -126,12 +114,16 @@ function Gallery() {
   }, [modal, selectedImage, galleryImages]);
 
   const nextImage = () => {
-    if (currentImageIndex !== null && currentImageIndex < galleryImages.length - 1) {
+    if (
+      currentImageIndex !== null &&
+      currentImageIndex < galleryImages.length - 1
+    ) {
       const nextIndex = currentImageIndex + 1;
       setSelectedImage(galleryImages[nextIndex]);
       setCurrentImageIndex(nextIndex);
     }
-  }
+  };
+
   const prevImage = () => {
     if (currentImageIndex !== null && currentImageIndex > 0) {
       const prevIndex = currentImageIndex - 1;
@@ -140,44 +132,46 @@ function Gallery() {
     }
   };
 
-
-  // console.log('galleryImages:', galleryImages)
-  // console.log('selectedImage:', selectedImage);
+  const handleFilterChange = (newCategory) => {
+    setFilter(newCategory);
+    if (newCategory === "") {
+      navigate("/gallery");
+    } else {
+      navigate(`/gallery/${newCategory}`);
+    }
+  };
 
   return (
     <>
+      <GalleryFilter onFilterChange={handleFilterChange} />
       <div
 
         className="gallery-container"
+        ref={galleryContainerRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={resetRotation}
       >
-        <GalleryFilter onFilterChange={handleFilterChange} />
         <div className="pictures-container">
-          {Array.isArray(galleryImages) &&
-            galleryImages.map((image) => (
-              <div
-                className={`${image.keyword}`}
-                key={image.id}
-                onClick={() => openModal(image)}
-              >
-                <div className="img-container">
-                  <img src={`img/${image.url}`} alt={image.title} />
-                </div>
-              </div>
-            ))}
-        </div>
-        {modal && selectedImage && 
-           <div>
-            <Modal selectedImage={selectedImage} 
-              Close={closeModal} 
-              nextImage={nextImage}
-              prevImage={prevImage}
-              />           
-            </div>
-        }
-           
-           
+  {Array.isArray(galleryImages) &&
+    galleryImages.map((image) => (
+      <div className="img-container" key={image.id}>
+        <img
+          src={`/img/${image.url}`}
+          alt={image.title}
+          onClick={() => openModal(image)}
+        />
+      </div>
+    ))}
+</div>
+
+        {modal && selectedImage && (
+          <Modal
+            selectedImage={selectedImage}
+            Close={closeModal}
+            nextImage={nextImage}
+            prevImage={prevImage}
+          />
+        )}
       </div>
     </>
   );

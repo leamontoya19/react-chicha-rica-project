@@ -4,7 +4,8 @@ import '../styles/Access.css'
 import Modal from 'react-modal'; //biblioteca para modal
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; //biblioteca icono cerrar modal
 import { faTimes } from '@fortawesome/free-solid-svg-icons'; //biblioteca icono cerrar modal
-import {useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom';
+
 
 //Estilos para el modal
 const customStyles = {

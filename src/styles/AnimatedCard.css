@@ -1,9 +1,9 @@
-.maincta {
+.main-cta {
+  font-family: 'Raleway', sans-serif;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  margin-top: 14%;
-  margin-left: 44%;
+  margin-top: 8%;
+  margin-left: 15%;
 }
 
 .imgcta {
@@ -15,9 +15,9 @@
 }
 
 .card {
-  position: relative;
-  width: 44vw;
-  height: 60vh;
+  position:absolute;
+  width: 43vw;
+  height: 55vh;
   background-color: #0d0d0d00;
   border-radius: 10px;
   display: flex;
@@ -240,3 +240,9 @@
   padding: 0%;
 }
 
+@media only screen and (max-width: 840px) {
+.card{
+  margin-top: 25%;
+}
+
+}
