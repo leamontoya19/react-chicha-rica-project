@@ -147,6 +147,7 @@ function Gallery() {
   return (
     <>
       <div
+
         className="gallery-container"
         onMouseMove={handleMouseMove}
         onMouseLeave={resetRotation}
@@ -166,13 +167,17 @@ function Gallery() {
               </div>
             ))}
         </div>
-        {modal && selectedImage && (
-           <Modal selectedImage={selectedImage} 
+        {modal && selectedImage && 
+           <div>
+            <Modal selectedImage={selectedImage} 
               Close={closeModal} 
               nextImage={nextImage}
-              prevImage={prevImage}/>           
-
-        )}
+              prevImage={prevImage}
+              />           
+            </div>
+        }
+           
+           
       </div>
     </>
   );
