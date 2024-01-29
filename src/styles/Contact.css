@@ -6,7 +6,7 @@
     left: 0;
     width: 404px;
     height: 100vh;
-    background-color: #8c030395;
+    background-color: #8c0303e6;
     align-items: center;
     transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     
@@ -58,7 +58,7 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-evenly;
-    min-height: 5%;
+    height: 20%;
     width: 100%;
     padding-bottom: 4%;
 }.redes--formato:hover {
@@ -95,6 +95,11 @@
     color: #d9d9d9;
     font-family: 'raleway', Helvetica, sans-serif;
     transition: 0.2s;
+    font-size: 20px;
+}
+
+.textarea{
+    font-size: 20px;
 }
 
 
