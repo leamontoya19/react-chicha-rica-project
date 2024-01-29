@@ -1,5 +1,90 @@
-.wishlist-items {
-    list-style: none; /* Elimina los marcadores de lista */
-    padding: 0; /* Elimina el relleno predeterminado de la lista */
-  }
+.wish-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4em;
+  height: 100%;
+  width: 100vw;
+  margin: auto;
+}
+
+.tarjeta-padre {
+  display: flex;
+  flex-direction: row-reverse;
+  box-sizing: border-box;
+  margin: auto;
+  border-radius: 28px;
+  width: 100vh;
+}
+
+.tarjeta {
+  background-color:antiquewhite;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+
+  margin: 10px auto; /* Ajusta según sea necesario */
+}
+
+.wish-img {
+  width: 8em;
+  height: 14em;
+  border-radius: 18px;
+}
+.wish-subtile {
+  color: red;
+  font-weight: bolder;
+  font-size: 3em;
+  margin-left: 3em;
+}
+
+.wish-price {
+  color: red;
+  font-weight: bolder;
+  font-size: 3em;
+  margin: auto;
+  margin-left: 2em;
+
+}
+
+.button-basura {
+  background-color: green;
+  flex-direction: column;
+  align-items: flex-end;
   
+
+} 
+
+.button-like {
+  background-color: blue;
+  flex-direction: column;
+  align-items: left;
+ 
+}
+
+
+
+.contenedor-btn{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around ;
+  background-color: green;
+  margin-bottom: 7vh;
+}
+
+.logo-basura {
+  background-color: red;
+}
+.logo-basura:hover {
+  background-color: blue;
+}
+
+.logo-like{
+  background-color: red;
+}
+.logo-like:hover {
+  background-color: green;
+}

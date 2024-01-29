@@ -6,24 +6,27 @@ const WishList = () => {
 
   return (
     <div className="wish-container">
-      <h2>Wish List</h2>
-      <div className="wishlist-items">
-        {wishList.map((img, index) => (
-          
-          <div key={index}>
-            {img ? (
-              <>    <div className="wish-img" ><img src={`img/${img.url}`} alt={img.title} /></div>
-                {img.title} - {img.price}€
-                {/* ... (otras propiedades del libro) */}
-              </>
-            ) : (
-              <span>Tu wishList</span>
-            )}
+    <div className="tarjeta-padre">
+      {wishList.map((img, index) => (
+        // Solo renderizar la tarjeta si img tiene un valor
+        img && (
+          <div className="tarjeta" key={index}>
+            <div className="wish-img-container">
+              <img className="wish-img" src={`img/${img.url}`} alt={img.title} />
+            </div>
+            <div className="wish-subtile">
+              {img.title}
+            </div>
+            <div className="wish-price">
+              {img.price}€
+            </div>
           </div>
-        ))}
-      </div>
+        )
+      ))}
     </div>
-  );
+  </div>
+);
 };
+
 
 export default WishList;
