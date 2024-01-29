@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+
 }
 
 .logo-header-r{
@@ -24,6 +25,7 @@ header {
   position: absolute; 
   right: 10px;
   top: 26px;
+  overflow: hidden;
 }
 
 .toggle-logo {
@@ -68,11 +70,15 @@ header {
 }
 
 .close-cart-btn.visible{
-  display:flex;
-  color: red;
-  background-color: blue;
+  display:block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-weight: bolder;
+  color: white;
   z-index: 9999;
 }
+
 @media only screen and (max-width: 840px) {
   header{
     padding: 0px;

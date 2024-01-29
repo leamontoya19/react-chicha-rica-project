@@ -68,6 +68,10 @@
 .redes--formato {
     min-height: 8%;
 }
+.icon-redes{
+    width: auto;
+    height: 2em;
+}
 .textarea{
     height: 250px;
     width: 169px;

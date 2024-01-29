@@ -162,7 +162,7 @@ const Payment = () => {
           </label>
         </div>
 
-        <div className='button-pay'>
+        <div className='button-payment'>
           <button className='pay' type="button" onClick={handlePagar}>
             Pagar
           </button>
