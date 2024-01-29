@@ -57,9 +57,6 @@
   flex-direction: row;
 }
 
-.close-cart-btn {
-  margin-left: 45%;
-}
 
 .cart-btn:hover{
   background-color: cornsilk;

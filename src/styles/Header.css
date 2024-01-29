@@ -63,13 +63,21 @@ header {
   font-weight: 800;
 }
 
+.close-cart-btn.hidden{
+  display: none;
+}
+
+.close-cart-btn.visible{
+  display:flex;
+  color: red;
+  background-color: blue;
+  z-index: 9999;
+}
 @media only screen and (max-width: 840px) {
   header{
     padding: 0px;
     margin-left: 325px;}
-  .main-header{
   
-  }
   
     
 }

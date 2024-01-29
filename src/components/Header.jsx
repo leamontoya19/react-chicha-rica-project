@@ -80,8 +80,8 @@ const Header = () => {
         <button className="cart-header" onClick={showCart}>
           🛒 {cartItems.length > 0 && `(${cartItems.length})`}
         </button>
-        {/* {cartVisible && <CartDisplay hideCart={hideCart} />} /*Renderiza CartDisplay solo cuando cartVisible es true */}
-        {/* <button onClick={closeCart}>X</button> */}
+        {cartVisible && <CartDisplay hideCart={hideCart} />} {/*Renderiza CartDisplay solo cuando cartVisible es true */}
+        <button onClick={closeCart} className={`close-cart-btn ${cartVisible ? 'visible' : 'hidden'}`}>X</button>
 
       </header>
     </div>
