@@ -67,20 +67,23 @@ li a:hover {
     display: none;
     ul {
       display: block;
-    
     }
+    li a:hover {
+      color: #f20519;
+      font-weight: 800;
+      }
   }
 }
 .nav-bar.active{
   width: 100%;
   display: block;
   position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  top: 30%;
-  left: 0;
-  right: 0;
+  top: 200%;
+  left: 0px;
+  right: 0px;
   text-align: center;
+  background-color: #df0d0d6e;
+}
  }
 
 .burguer-nav{

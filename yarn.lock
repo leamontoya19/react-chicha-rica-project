@@ -984,7 +984,7 @@
 
 "@react-three/cannon@^6.6.0":
   version "6.6.0"
-  resolved "https://registry.npmjs.org/@react-three/cannon/-/cannon-6.6.0.tgz#bef2b2224f6ea0c59e704045dc289760522dae29"
+  resolved "https://registry.yarnpkg.com/@react-three/cannon/-/cannon-6.6.0.tgz#bef2b2224f6ea0c59e704045dc289760522dae29"
   integrity sha512-lP9rJoVHQi0w+dYF8FJAm2xr5eLfNEckb04j72kjqndUkuOPr26N4rSBhQbHl5b5N3tEnhQaIMungAvHkcY8/A==
   dependencies:
     "@pmndrs/cannon-worker-api" "^2.4.0"
@@ -993,7 +993,7 @@
 
 "@react-three/drei@^9.96.5":
   version "9.96.5"
-  resolved "https://registry.npmjs.org/@react-three/drei/-/drei-9.96.5.tgz#9ace2f8fe56e2050e1ea6792dadb8d4dbcb2042a"
+  resolved "https://registry.yarnpkg.com/@react-three/drei/-/drei-9.96.5.tgz#9ace2f8fe56e2050e1ea6792dadb8d4dbcb2042a"
   integrity sha512-mEf8y8S0FCdCryfbKJ1vghYzMgI+7bgssEeerBBwCk4pi7h8OeavWISXb7QzY9dQLbPm5lL/X0PC7qLE6VUKww==
   dependencies:
     "@babel/runtime" "^7.11.2"
@@ -1021,7 +1021,7 @@
 
 "@react-three/fiber@^8.15.15":
   version "8.15.15"
-  resolved "https://registry.npmjs.org/@react-three/fiber/-/fiber-8.15.15.tgz#28ea2ee9fcd382e3720e0ca84fcbc270c13d2f48"
+  resolved "https://registry.yarnpkg.com/@react-three/fiber/-/fiber-8.15.15.tgz#28ea2ee9fcd382e3720e0ca84fcbc270c13d2f48"
   integrity sha512-Z5POnzgpYxrgnYuiCv+8t7lpynEcGcn0/323kV1NtE7Cwq16aMqEuC6nF2Y/tK+crJpKNEqsRtvng/eJy0xxOA==
   dependencies:
     "@babel/runtime" "^7.17.8"
@@ -4663,7 +4663,7 @@ three-stdlib@^2.29.4:
 
 three@^0.160.1:
   version "0.160.1"
-  resolved "https://registry.npmjs.org/three/-/three-0.160.1.tgz#61fe2907312e8604b1f64187f58e047503847413"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.160.1.tgz#61fe2907312e8604b1f64187f58e047503847413"
   integrity sha512-Bgl2wPJypDOZ1stAxwfWAcJ0WQf7QzlptsxkjYiURPz+n5k4RBDLsq+6f9Y75TYxn6aHLcWz+JNmwTOXWrQTBQ==
 
 tiny-warning@^1.0.2:
@@ -5132,6 +5132,13 @@ zustand@^3.7.1:
 zustand@^4.3.2:
   version "4.5.0"
   resolved "https://registry.npmjs.org/zustand/-/zustand-4.5.0.tgz#141354af56f91de378aa6c4b930032ab338f3ef0"
+  integrity sha512-zlVFqS5TQ21nwijjhJlx4f9iGrXSL0o/+Dpy4txAP22miJ8Ti6c1Ol1RLNN98BMib83lmDH/2KmLwaNXpjrO1A==
+  dependencies:
+    use-sync-external-store "1.2.0"
+
+zustand@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-4.5.0.tgz#141354af56f91de378aa6c4b930032ab338f3ef0"
   integrity sha512-zlVFqS5TQ21nwijjhJlx4f9iGrXSL0o/+Dpy4txAP22miJ8Ti6c1Ol1RLNN98BMib83lmDH/2KmLwaNXpjrO1A==
   dependencies:
     use-sync-external-store "1.2.0"
