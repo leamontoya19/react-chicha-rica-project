@@ -155,15 +155,16 @@ const Modal = (props) => {
           {selectedImage && (
             <>
               <h3>{selectedImage.title}</h3>
-              <p>Precio: {selectedImage[selectedPrice]}€</p>
+              <p className="price">Precio: {selectedImage[selectedPrice]}€</p>
+              <p className="choose-size">Elegir tamaño:</p>
               <select
                 className="price-selector"
                 value={selectedPrice}
                 onChange={handlePriceChange}
               >
-                <option value="priceSmall">Pequeño</option>
-                <option value="priceMedium">Mediano</option>
-                <option value="priceLarge">Grande</option>
+                <option className="option" value="priceSmall">Pequeño</option>
+                <option className="option" value="priceMedium">Mediano</option>
+                <option className="option" value="priceLarge">Grande</option>
               </select>
             </>
           )}
@@ -183,30 +184,37 @@ const Modal = (props) => {
             Añadir
           </button>
           <button className="cart" onClick={openCart}>
-            Ver mi carrito
+            Ver Carrito
           </button>
         </div>
 
         {cartVisible && (
           <div className="cart-content">
-            <h3>Carrito de compra</h3>
+            <div className="title-close">
+              <h3>Carrito de compra</h3>
+              <button className='close-cart-btn' onClick={closeCart}>X</button>
+            </div>
+           
             {cartItems.length > 0 ? (
               <>
-                <ul>
+                <ol>
                   {cartItems.map((item, index) => (
                     <li key={index}>
-                      {item.title} - {item.price}€
+                      Título: "{item.title}" - Precio: {item.price}€
                     </li>
                   ))}
-                </ul>
-                <p>Total: {calculateTotal()}</p>
-                <button onClick={clearCart}>Clear</button>
-                <button onClick={finishPurchase}>Finalizar</button>
+                </ol>
+                <p className="total-price">Total: {calculateTotal()}</p>
+                <div className="clear-end">
+                  <button className="cart" onClick={clearCart}>Clear</button>
+                  <button className="cart" onClick={finishPurchase}>Finalizar</button>
+                </div>
+                
               </>
             ) : (
               <p>no hay nada en tu carrito</p>
             )}
-            <button className='close-cart-btn' onClick={closeCart}>X</button>
+            
           </div>
         )}
       </div>

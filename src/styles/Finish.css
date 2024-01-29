@@ -22,6 +22,11 @@
 
 }
 
+.info-product{
+    display: flex;
+    margin-bottom: 10px;
+}
+
 .titles{
     margin-top: -100px;
     margin-bottom: 50px;
@@ -32,10 +37,23 @@
     
 }
 
+.title-price{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.title-price span{
+    font-size: 17px;
+}
+
 h4{
     margin-top: -10px;
     font-size: 15px;
 }
+
 
 .button-pay{
     margin-bottom: 100px;

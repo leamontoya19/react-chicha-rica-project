@@ -23,17 +23,23 @@ const redirectToGallery = () => {
     <section className='finish-container'>
       <div className='finish-black'>
         <div className='titles'>
-          <h2>Finish Page</h2>
-          <h4>Confirmar pedido:</h4>
-        </div>
+          <h2>Confirmar pedido</h2>
+           </div>
         
         <div>
         {cartItems.map((item, index) => (
           
-          <div key={index}>
-            <h4>{item.title}</h4>
+          <div className='info-product' key={index}>
+            
             <img src={`img/${item.url}`} alt={item.title} style={{ width: '100px', height: '100px' }} />
-            <span>{item.price} €</span>
+            <div>
+
+            </div>
+            <div className='title-price'>
+              <h4>{item.title}</h4>
+              <span>{item.price} €</span>
+              </div>
+            
           </div>
            ))}
         </div>
