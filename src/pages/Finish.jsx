@@ -31,7 +31,7 @@ const redirectToGallery = () => {
           
           <div className='info-product' key={index}>
             
-            <img src={`img/${item.url}`} alt={item.title} style={{ width: '100px', height: '100px' }} />
+            <img src={`img/${item.url}`} alt={item.title} style={{ width: 'auto', height: '100px' }} />
             <div>
 
             </div>
