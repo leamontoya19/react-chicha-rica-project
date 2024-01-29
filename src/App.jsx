@@ -14,6 +14,8 @@ import Home from './pages/Home';
 import { CartProvider } from './CartContext';
 import CartDisplay from './components/CartDisplay';
 import Finish from './pages/Finish';
+import Wishlist from './pages/Wishlist';
+
 
 
 
@@ -29,11 +31,9 @@ function App() {
           <Route path="/access" element={<Access />} />
           <Route path="/login" element={<Login />}/>
           <Route path="/terms" element={<Terms />} />
-
           <Route path="/finish" element={<Finish />} />  {/* Agrega la ruta de la página de finalización */}
         </Routes>
 
-        
       </CartProvider>
       <Footer />
     </Router>

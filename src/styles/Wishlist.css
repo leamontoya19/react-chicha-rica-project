@@ -1,24 +1,89 @@
 /* src/Wishlist.css */
-.Wishlist-container {
-    max-width: 600px;
-    margin: 20px auto;
-  }
-  git pull origin leandra
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    margin-bottom: 10px;
-  }
-  
-  button {
-    margin-top: 5px;
-  }
 
+.wishlist-container {
+  display: flex;
+  justify-content: center;
+  /* Centra horizontalmente */
+  align-items: center;
+  /* Centra verticalmente */
+  background-color: white;
+  width: 100vw;
+  margin-top: 30vh;
+}
+
+.tarjeta-padre {
+  background-color: purple;
+  display: flex;
+  justify-content: center;
+  /* Centra horizontalmente */
+  align-items: center;
+  /* Centra verticalmente */
+  min-height: 100vh;
+  /* Establece una altura mínima al 100% del viewport */
+  box-sizing: border-box;
+  margin: auto;
+  /*vh: controla el eje vertical de las coordenadas cartesianas, la altura; vw: permite controlar el eje horizontal */
+  margin-top: 30vh; 
+  margin-bottom: 30vh;
+  border-radius: 8px;
+  width: 100vh;
+}
+
+.tarjeta {
+  background-color: purple;
+  z-index: 99999;
+  max-width: 600px;
+  margin: 20px auto;
+ color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Alinea el contenido verticalmente en el centro */
+  border-radius: 8px;
+  width: 100%;
+}
+
+.img-container {
+  width:60%;
+  border-radius: 8px;
+}
+
+.button-basura{
+  background-color: green;
+  flex-direction: column;
+  align-items: flex-end;
   
 
+} 
+
+.button-like {
+  background-color: blue;
+  flex-direction: column;
+  align-items: left;
+ 
+}
 
 
-  
+
+.contenedor-btn{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around ;
+  background-color: green;
+  margin-bottom: 7vh;
+}
+
+.logo-basura {
+  background-color: red;
+}
+.logo-basura:hover {
+  background-color: blue;
+}
+
+.logo-like{
+  background-color: red;
+}
+.logo-like:hover {
+  background-color: green;
+}

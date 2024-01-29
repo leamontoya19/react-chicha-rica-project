@@ -1,15 +1,15 @@
 import React from 'react'
 import '../styles/Home.css'
 import AnimatedCard from './AnimatedCard';
+import Wishlist from './Wishlist';
+
 
 function Home() {
   return (
-  <main className="home-container" > 
-  <div className='main-cta'>
-    <AnimatedCard />
-  </div>
-</main>
-);
+    <div className="wishlist-container">
+      <Wishlist />
+    </div>
+  );
 }
 
 export default Home
