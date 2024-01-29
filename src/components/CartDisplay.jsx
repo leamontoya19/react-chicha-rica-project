@@ -1,6 +1,8 @@
 // CartDisplay.jsx
 import React from 'react';
 import { useCart } from '../CartContext';
+import { useNavigate } from 'react-router-dom';
+import '../styles/CartDisplay.css'
 
 const CartDisplay = () => {
   const { cartItems, clearCart } = useCart();
@@ -10,20 +12,30 @@ const CartDisplay = () => {
     return `${total}€` ;
   };
 
+  const navigate = useNavigate();
+
+  const redirectToPayment = () => {
+    navigate('/payment')
+  }
+
   return (
     <div className="cart-display">
       
       {cartItems.length > 0 ? (
         <>
-          <ul>
+          <ol>
             {cartItems.map((item, index) => (
               <li key={index}>
-                {item.title} - {item.price}
+                "{item.title}" ({item.price}€)
               </li>
             ))}
-          </ul>
-          <p>Total: {calculateTotal()}</p>
-          <button onClick={clearCart}>Vacíar carrito</button>
+          </ol>
+          <p className='price-total'>Total: {calculateTotal()}</p>
+          <div className='buttons-cartdisplay'>
+            <button className='button-cart' onClick={clearCart}>Vacíar carrito</button>
+            <button className='button-cart' type='submit' onClick={redirectToPayment}>Comprar</button>
+          </div>
+          
         </>
       ) : (
         <p>Tu carrito está vacío</p>

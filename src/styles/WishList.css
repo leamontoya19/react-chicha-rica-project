@@ -1,5 +1,33 @@
+.wish-container{
+  margin-top: -100px;
+}
+
 .wishlist-items {
     list-style: none; /* Elimina los marcadores de lista */
     padding: 0; /* Elimina el relleno predeterminado de la lista */
+  }
+
+  .wish-section{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 93px;
+    align-content: center;
+    justify-content: space-evenly;
+  }
+
+  .wish-img{
+    width: 20%;
+    height: 100px;
+  }
+
+  .wish-img img{
+    width: 100%;
+    height: auto;
+  }
+
+  .wish-section p{
+    margin-left: -500px;
+    font-size: 17px;
   }
   
