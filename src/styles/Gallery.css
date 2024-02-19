@@ -33,9 +33,21 @@
 
 @media(max-width: 1228px) {
   .pictures-container {
-    -webkit-column-count: 2;
-    -moz-column-count: 2;
-    column-count: 2;
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
+    margin-left: 90px;
+    align-items: center;
+  
+  }
+  .img-container {
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 60px; 
+  }
+  
+  .img-container img {
+    width: 80%;
   }
 }
 
@@ -45,5 +57,6 @@
     -webkit-column-count: 1;
     -moz-column-count: 1;
     column-count: 1;
+  
   }
 }

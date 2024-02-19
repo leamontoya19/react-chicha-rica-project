@@ -1,6 +1,7 @@
 /* Estilos base */
 .gallery-filter {
   text-align: center;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,3 +70,31 @@
 .gallery-link.active {
   color: red;
 }
+
+@media(max-width: 1228px) {
+.gallery-filter {
+  width: 60px;
+  margin-left: auto;
+  
+}
+.gallery-button {
+  width: 4rem;
+  height: 2rem;
+  margin: 0.3rem;
+  font-size: 0.5rem;
+
+}
+
+@media (max-width: 790px) {
+  .gallery-filter {
+    width: 20px;
+    margin: 100px auto 10px auto;
+    font-size: 0.2rem;
+  
+    
+  }
+  
+  }
+}
+
+

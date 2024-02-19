@@ -24,22 +24,23 @@ function App() {
   return (
     <Router>
       <CartProvider>
-      <WishListProvider>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/gallery/:category?" element={<Gallery />} />
-          <Route path="/access" element={<Access />} />
-          <Route path="/login" element={<Login />}/>
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/payment" element={<Payment />} />          
-          <Route path="/user-profile/:userId?" element={<UserProfile userId={1} />} />
-          <Route path="/finish" element={<Finish />} />  {/* Agrega la ruta de la página de finalización */}
-          <Route path="/thanks" element={<Thanks />} />
-          <Route path="/multiverse" element={<EasterEgg />} /> 
-          <Route path="/wishlist" element={<WishList/>} />
-        </Routes>
+        <WishListProvider>
+          segis36
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/gallery/:category?" element={<Gallery />} />
+            <Route path="/access" element={<Access />} />
+            <Route path="/login" element={<Login />}/>
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/payment" element={<Payment />} />          
+            <Route path="/user-profile/:userId?" element={<UserProfile userId={1} />} />
+            <Route path="/finish" element={<Finish />} />  {/* Agrega la ruta de la página de finalización */}
+            <Route path="/thanks" element={<Thanks />} />
+            <Route path="/multiverse" element={<EasterEgg />} /> 
+            <Route path="/wishlist" element={<WishList/>} />
+          </Routes>
         </WishListProvider>
       </CartProvider>
       <Footer />
